@@ -22,6 +22,9 @@ import ProfilePage from '../Profilepage';
 import LeaveRequest from '../LeaveRequest';
 import TrainingRequest from '../TrainingRequest';
 import LeaveEncashment from '../LeaveEncashment';
+import EmployeeServices from '../EmployeeServices';
+import Payslip from '../Payslip';
+import LeaveBalance from '../LeaveBalance';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -42,6 +45,9 @@ export default function App() {
         <Route path="/leaveRequest" component={LeaveRequest} />
         <Route path="/trainingrequest" component={TrainingRequest} />
         <Route path="/leaveencashment" component={LeaveEncashment} />
+        <Route path="/employeeservices" component={EmployeeServices} />
+        <Route path="/payslip" component={Payslip} />
+        <Route path="/leavebalance" component={LeaveBalance} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />

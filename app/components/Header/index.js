@@ -23,7 +23,11 @@ import NavBar from './NavBar';
 import messages from './messages';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-const pages = [{ path: '/', name: 'Home' }, { path: '/features', name: 'Features' }, { path: '/leaverequest', name: 'Leave Request' }, { path: '/trainingrequest', name: 'Training Request' }, { path: '/leaveencashment', name: 'Leave Encashment' }];
+const pages = [{ path: '/', name: 'Home' }, { path: '/features', name: 'Features' }, { path: '/leaverequest', name: 'Leave Request' }, { path: '/trainingrequest', name: 'Training Request' }, { path: '/leaveencashment', name: 'Leave Encashment' },
+{ path: '/employeeservices', name: 'Employee Services' },
+{ path: '/leavebalance', name: 'Leave Balance' },
+{ path: '/payslip', name: 'Payslip' },
+];
 
 const data = [{
   labelAR: 'اسم الموظف',

@@ -5,13 +5,11 @@ import TextField from '@mui/material/TextField';
 export default function TextInput(props) {
     const { label, required, style, name, type, value, onChange } = props;
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                '& > :not(style)': { m: 1 },
-            }}
-        >
+        <div style={{
+            flexDirection: 'row', display: 'flex',
+            alignItems: 'center', justifyContent: 'space-between',
+            padding: 5
+        }}>
             <label>{label}</label>
             <TextField
                 required={required}
@@ -23,6 +21,6 @@ export default function TextInput(props) {
                 id="demo-helper-text-misaligned"
 
             />
-        </Box>
+        </div>
     );
 }
