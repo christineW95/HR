@@ -23,7 +23,7 @@ import NavBar from './NavBar';
 import messages from './messages';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-const pages = [{ path: '/', name: 'Home' }, { path: '/features', name: 'Features' }, { path: '/leaverequest', name: 'Leave Request' }, { path: '/trainingrequest', name: 'Training Request' }];
+const pages = [{ path: '/', name: 'Home' }, { path: '/features', name: 'Features' }, { path: '/leaverequest', name: 'Leave Request' }, { path: '/trainingrequest', name: 'Training Request' }, { path: '/leaveencashment', name: 'Leave Encashment' }];
 
 const data = [{
   labelAR: 'اسم الموظف',
@@ -74,7 +74,7 @@ const data = [{
 }
 ]
 const listItems = data.map((item) =>
-  <div dir='rtl' style={{ display: "flex", justifyContent: "space-between" }}>
+  <div dir='rtl' style={{ display: "flex", justifyContent: "space-between", padding: 10 }}>
     <label>
       {item['labelAR']}:
     </label>
