@@ -1,4 +1,4 @@
-import { TextareaAutosize } from '@mui/material';
+import { Button, TextareaAutosize } from '@mui/material';
 import React, { useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -23,7 +23,7 @@ function LeaveEncashment() {
     };
 
     return (
-        <div >
+        <div style={{ display: 'flex', flex: 1, padding: 100 }}>
             <form onSubmit={handleSubmit} style={{
                 flexGrow: 1,
                 display: 'grid',
@@ -72,11 +72,12 @@ function LeaveEncashment() {
                     value={remarks}
                     onChange={e => setremarks(e.target.value)}
                 />
-
-                <div style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'red' }}>
-                    <button>Submit</button>
+                <div style={{}}>
+                    <Button variant="contained" style={{ margin: 20 }}>Submit</Button>
 
                 </div>
+
+
             </form>
         </div >
     );
