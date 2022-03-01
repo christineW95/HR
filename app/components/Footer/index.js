@@ -9,7 +9,13 @@ import { Button } from '@mui/material';
 
 function Footer() {
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+
+    }}>
+
       <Button variant="contained" style={{ margin: 20 }}>Save</Button>
       <Button variant="contained" style={{ margin: 20 }}>Edit</Button>
       <Button variant="contained" style={{ margin: 20 }}>Cancel</Button>

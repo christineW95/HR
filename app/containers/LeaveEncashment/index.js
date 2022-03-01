@@ -24,7 +24,7 @@ function LeaveEncashment() {
     };
 
     return (
-        <div style={{ display: 'flex', flex: 1, padding: 100 }}>
+        <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column' }}>
             <form onSubmit={handleSubmit} style={{
                 flexGrow: 1,
                 display: 'grid',
@@ -44,11 +44,11 @@ function LeaveEncashment() {
 
                 <label style={{ padding: 7 }}>
                     Leave Balance:
-                    <label style={{ padding: 7 }}>{leaveBalance}</label>
+                    <label style={{ padding: 20 }}>{leaveBalance}</label>
                 </label>
                 <label style={{ padding: 7 }}>
                     Leave Encashed:
-                    <label style={{ padding: 7 }}>{leaveEncashed}</label>
+                    <label style={{ padding: 10 }}>{leaveEncashed}</label>
                 </label>
                 <TextInput
                     label=" Number of days:"
@@ -61,7 +61,7 @@ function LeaveEncashment() {
 
                 <label style={{ padding: 7 }}>
                     Request Date:
-                    <label style={{ padding: 7 }}>
+                    <label style={{ padding: 30 }}>
                         {requestDate}
 
                     </label>
@@ -73,13 +73,11 @@ function LeaveEncashment() {
                     value={remarks}
                     onChange={e => setremarks(e.target.value)}
                 />
-                <div style={{}}>
-                    <Button variant="contained" style={{ margin: 20 }}>Submit</Button>
 
-                </div>
-                <Footer />
+
 
             </form>
+            <Footer />
         </div >
     );
 }

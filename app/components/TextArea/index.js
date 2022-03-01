@@ -12,8 +12,6 @@ export default function EmptyTextarea(props) {
             <label>{label}</label>
             <TextareaAutosize
                 {...props}
-                aria-label="empty textarea"
-                placeholder="Empty"
                 style={{ display: 'flex', width: 300, margin: 10 }}
             />
         </div>

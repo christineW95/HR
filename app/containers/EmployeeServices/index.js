@@ -23,7 +23,7 @@ function EmployeeServices() {
     };
 
     return (
-        <div style={{ display: 'flex', flex: 1, padding: 100 }}>
+        <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column' }}>
             <form onSubmit={handleSubmit} style={{
                 flexGrow: 1,
                 display: 'grid',
@@ -91,13 +91,10 @@ function EmployeeServices() {
                     value={remarks}
                     onChange={e => setremarks(e.target.value)}
                 />
-                {/* <div style={{}}>
-                    <Button variant="contained" style={{ margin: 20 }}>Submit</Button>
 
-                </div> */}
-                <Footer />
 
             </form>
+            <Footer />
 
         </div >
     );
