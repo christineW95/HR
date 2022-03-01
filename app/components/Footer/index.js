@@ -5,25 +5,16 @@ import A from 'components/A';
 import LocaleToggle from 'containers/LocaleToggle';
 import Wrapper from './Wrapper';
 import messages from './messages';
+import { Button } from '@mui/material';
 
 function Footer() {
   return (
-    <Wrapper>
-      <section>
-        <FormattedMessage {...messages.licenseMessage} />
-      </section>
-      <section>
-        <LocaleToggle />
-      </section>
-      <section>
-        <FormattedMessage
-          {...messages.authorMessage}
-          values={{
-            author: <label>Christine William</label>,
-          }}
-        />
-      </section>
-    </Wrapper>
+    <div>
+      <Button variant="contained" style={{ margin: 20 }}>Save</Button>
+      <Button variant="contained" style={{ margin: 20 }}>Edit</Button>
+      <Button variant="contained" style={{ margin: 20 }}>Cancel</Button>
+    </div>
+
   );
 }
 

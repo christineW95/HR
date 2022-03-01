@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Footer from '../../components/Footer';
 function TrainingRequest() {
 
     const [courseName, setcourseName] = React.useState('');
@@ -150,6 +151,7 @@ function TrainingRequest() {
 
                 <button>Submit</button>
             </form>
+            <Footer />
         </div>
     );
 }

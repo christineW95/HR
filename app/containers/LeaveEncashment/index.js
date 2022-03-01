@@ -2,6 +2,7 @@ import { Button, TextareaAutosize } from '@mui/material';
 import React, { useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Footer from '../../components/Footer';
 import MultipleSelect from '../../components/select';
 import UnstyledSelectSimple from '../../components/select';
 import EmptyTextarea from '../../components/TextArea';
@@ -76,7 +77,7 @@ function LeaveEncashment() {
                     <Button variant="contained" style={{ margin: 20 }}>Submit</Button>
 
                 </div>
-
+                <Footer />
 
             </form>
         </div >

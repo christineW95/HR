@@ -2,6 +2,7 @@ import { Button, TextareaAutosize } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Footer from '../../components/Footer';
 import RadioButtonsGroup from '../../components/RadioGroup';
 import MultipleSelect from '../../components/select';
 import UnstyledSelectSimple from '../../components/select';
@@ -90,13 +91,14 @@ function EmployeeServices() {
                     value={remarks}
                     onChange={e => setremarks(e.target.value)}
                 />
-                <div style={{}}>
+                {/* <div style={{}}>
                     <Button variant="contained" style={{ margin: 20 }}>Submit</Button>
 
-                </div>
-
+                </div> */}
+                <Footer />
 
             </form>
+
         </div >
     );
 }

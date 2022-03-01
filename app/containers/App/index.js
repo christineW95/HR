@@ -40,7 +40,6 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
         <Route path="/profile" component={ProfilePage} />
         <Route path="/leaveRequest" component={LeaveRequest} />
         <Route path="/trainingrequest" component={TrainingRequest} />
@@ -50,7 +49,6 @@ export default function App() {
         <Route path="/leavebalance" component={LeaveBalance} />
         <Route path="" component={NotFoundPage} />
       </Switch>
-      <Footer />
       <GlobalStyle />
     </AppWrapper>
   );
