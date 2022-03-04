@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
 import BasicDatePicker from '../../components/Datepicker';
 import Footer from '../../components/Footer';
 import EmptyTextarea from '../../components/TextArea';

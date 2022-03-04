@@ -41,7 +41,7 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/profile" component={ProfilePage} />
-        <Route path="/leaveRequest" component={LeaveRequest} />
+        <Route path="/leaverequest" component={LeaveRequest} />
         <Route path="/trainingrequest" component={TrainingRequest} />
         <Route path="/leaveencashment" component={LeaveEncashment} />
         <Route path="/employeeservices" component={EmployeeServices} />
