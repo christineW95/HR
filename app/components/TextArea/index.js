@@ -12,7 +12,7 @@ export default function EmptyTextarea(props) {
             <label>{label}</label>
             <TextareaAutosize
                 {...props}
-                style={{ display: 'flex', width: 300, margin: 10 }}
+                style={{ display: 'flex', width: 300, margin: 10,borderRadius:3,padding:15,backgroundColor:'transparent',borderColor:'lightgray' }}
             />
         </div>
 

@@ -25,6 +25,7 @@ import LeaveEncashment from '../LeaveEncashment';
 import EmployeeServices from '../EmployeeServices';
 import Payslip from '../Payslip';
 import LeaveBalance from '../LeaveBalance';
+import DutyResumption from '../DutyResumption';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -47,6 +48,7 @@ export default function App() {
         <Route path="/employeeservices" component={EmployeeServices} />
         <Route path="/payslip" component={Payslip} />
         <Route path="/leavebalance" component={LeaveBalance} />
+        <Route path="/dutyresumption" component={DutyResumption} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -26,6 +26,7 @@ import { Link } from 'react-router-dom';
 const pages = [{ path: '/', name: 'Home' }, { path: '/trainingrequest', name: 'Training Request' }, { path: '/leaveencashment', name: 'Leave Encashment' },
 { path: '/employeeservices', name: 'Employee Services' },
 { path: '/leavebalance', name: 'Leave Balance' },
+{ path: '/dutyresumption', name: 'Duty Resumption' },
 { path: '/leaverequest', name: 'Leave Request' },
 { path: '/payslip', name: 'Payslip' },
 ];
