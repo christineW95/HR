@@ -1,10 +1,11 @@
 import React from "react";
 import Footer from "../../components/Footer";
 import BasicDatePicker from "../../components/Datepicker";
-import MultipleSelect from '../../components/select';
+import MultipleSelect from "../../components/select";
 
-import EmptyTextarea from '../../components/TextArea';
-import TextInput from '../../components/TextInput';
+import EmptyTextarea from "../../components/TextArea";
+import TextInput from "../../components/TextInput";
+import { Link } from "react-router-dom";
 function LeaveRequest() {
   const [country, setCountry] = React.useState("");
   //TODO:retrieve from API
@@ -15,14 +16,12 @@ function LeaveRequest() {
   const [numberOfDays, setnumberOfDays] = React.useState(null);
   const [address, setaddress] = React.useState(null);
   const [replacement, setreplacement] = React.useState(null);
-  const [remarks, setremarks] = React.useState('');
+  const [remarks, setremarks] = React.useState("");
   const [phone, setphone] = React.useState(null);
-
 
   let options = [];
   const [typeOfLeave, settypeOfLeave] = React.useState("");
   const handleSubmit = (event) => {
-   
     event.preventDefault();
   };
 
@@ -35,6 +34,7 @@ function LeaveRequest() {
         flexDirection: "column",
       }}
     >
+     
       <form
         onSubmit={handleSubmit}
         style={{
@@ -44,6 +44,7 @@ function LeaveRequest() {
           justifyContent: "space-between",
         }}
       >
+      
         <h1>Request Details</h1>
 
         {/* TODO:send the options */}
@@ -58,14 +59,13 @@ function LeaveRequest() {
         <label style={{ padding: 7 }}>
           Leave Balance:
           <label style={{ padding: 48 }}>{leaveBalance}</label>
-        </label> 
+        </label>
         <BasicDatePicker
           label={"Begin Date:"}
           selected={beginDate}
           onSelect={(date) => setbeginDate(date)}
           startDate={new Date()}
           required
-          
         />
         <BasicDatePicker
           label={"End Date:"}
@@ -84,7 +84,7 @@ function LeaveRequest() {
               else alert("End date must be after Begin Date");
             }
           }}
-        /> 
+        />
 
         <TextInput
           label=" Number of days:"
@@ -97,7 +97,6 @@ function LeaveRequest() {
         />
 
         <BasicDatePicker
-
           label={"Expected Reporting Date:"}
           selected={reportingDate}
         />
@@ -141,6 +140,34 @@ function LeaveRequest() {
           value={remarks}
           onChange={(e) => setremarks(e.target.value)}
         />
+           <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
+        <Link
+          to={"/dutyresumption"}
+          style={{
+            whiteSpace: "nowrap",
+            textAlign: "justify",
+            textDecoration: "none",
+          }}
+        >
+          View Completed Requests
+        </Link>
+        <Link
+          to={"/cancelleaverequest"}
+          style={{
+            whiteSpace: "nowrap",
+            textAlign: "justify",
+            textDecoration: "none",
+          }}
+        >
+          View Current Requests
+        </Link>
+      </div>
       </form>
       <Footer />
     </div>

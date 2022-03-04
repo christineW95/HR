@@ -22,7 +22,7 @@ let listOfLeaves=[];
         flexDirection: "column",
       }}
     >
-                <h1>Current Leaves</h1>
+                <h1>Completed Leaves</h1>
 
       <CustomList {...listOfLeaves}/>
       <form
