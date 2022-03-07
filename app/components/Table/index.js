@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Table from '@material-ui/material/Table';
-import TableBody from '@material-ui/material/TableBody';
-import TableCell from '@material-ui/material/TableCell';
-import TableContainer from '@material-ui/material/TableContainer';
-import TableHead from '@material-ui/material/TableHead';
-import TableRow from '@material-ui/material/TableRow';
-import Paper from '@material-ui/material/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 function createData(name, value,) {
     return { name, value, };

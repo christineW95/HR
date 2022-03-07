@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import BasicDatePicker from '../../components/Datepicker';
+import MaterialUIPickers from '../../components/Datepicker';
 import Footer from '../../components/Footer';
 import EmptyTextarea from '../../components/TextArea';
 import TextInput from '../../components/TextInput';
@@ -80,8 +80,8 @@ function TrainingRequest() {
                     onChange={e => setCost(e.target.value)}
                     required />
 
-                <BasicDatePicker label={"Begin Date:"} selected={beginDate} onSelect={(date) => setbeginDate(date)} startDate={new Date()} required />
-                <BasicDatePicker label={"End Date:"} selected={endDate} required onSelect={(date) => {
+                <MaterialUIPickers label={"Begin Date:"} selected={beginDate} onSelect={(date) => setbeginDate(date)} startDate={new Date()} required />
+                <MaterialUIPickers label={"End Date:"} selected={endDate} required onSelect={(date) => {
                     setendDate(date)
                     if (beginDate) {
                         var Difference_In_Time = date.getTime() - beginDate.getTime();

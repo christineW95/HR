@@ -42,7 +42,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        {/* <Route path="/profile" component={ProfilePage} />
+        <Route path="/profile" component={ProfilePage} />
         <Route path="/leaverequest" component={LeaveRequest} />
         <Route path="/trainingrequest" component={TrainingRequest} />
         <Route path="/leaveencashment" component={LeaveEncashment} />
@@ -50,7 +50,7 @@ export default function App() {
         <Route path="/payslip" component={Payslip} />
         <Route path="/leavebalance" component={LeaveBalance} />
         <Route path="/dutyresumption" component={DutyResumption} />
-        <Route path="/cancelleaverequest" component={CancelLeaveRequest} /> */}
+        <Route path="/cancelleaverequest" component={CancelLeaveRequest} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

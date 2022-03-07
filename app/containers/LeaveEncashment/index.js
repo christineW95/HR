@@ -1,7 +1,5 @@
-import { Button, TextareaAutosize } from '@material-ui/material';
+import { Button, TextareaAutosize } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Footer from '../../components/Footer';
 import MultipleSelect from '../../components/select';
 import UnstyledSelectSimple from '../../components/select';

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../../components/Footer";
-import BasicDatePicker from "../../components/Datepicker";
+import MaterialUIPickers from "../../components/Datepicker";
 import EmptyTextarea from "../../components/TextArea";
 import TextInput from "../../components/TextInput";
 import CustomList from "../../components/List";

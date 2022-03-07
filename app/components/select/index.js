@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/material/styles';
-import OutlinedInput from '@material-ui/material/OutlinedInput';
-import InputLabel from '@material-ui/material/InputLabel';
-import MenuItem from '@material-ui/material/MenuItem';
-import FormControl from '@material-ui/material/FormControl';
-import Select from '@material-ui/material/Select';
+import { useTheme } from '@material-ui/core/styles';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

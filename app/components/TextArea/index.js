@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextareaAutosize from '@material-ui/material/TextareaAutosize';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 export default function EmptyTextarea(props) {
     const { label } = props

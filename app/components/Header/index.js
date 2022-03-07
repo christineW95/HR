@@ -1,27 +1,27 @@
 import * as React from 'react';
-import { styled, alpha } from '@material-ui/material/styles';
-import AppBar from '@material-ui/material/AppBar';
-import Box from '@material-ui/material/Box';
-import Toolbar from '@material-ui/material/Toolbar';
-import IconButton from '@material-ui/material/IconButton';
-import Typography from '@material-ui/material/Typography';
-import InputBase from '@material-ui/material/InputBase';
-import Badge from '@material-ui/material/Badge';
-import MenuItem from '@material-ui/material/MenuItem';
-import Menu from '@material-ui/material/Menu';
-import MenuIcon from '@material-ui/icons-material/Menu';
-import SearchIcon from '@material-ui/icons-material/Search';
-import AccountCircle from '@material-ui/icons-material/AccountCircle';
-import MailIcon from '@material-ui/icons-material/Mail';
-import NotificationsIcon from '@material-ui/icons-material/Notifications';
-import MoreIcon from '@material-ui/icons-material/MoreVert';
+import { styled, alpha } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
 import HeaderLink from './HeaderLink';
 import { FormattedMessage } from 'react-intl';
 
 import NavBar from './NavBar';
 
 import messages from './messages';
-import { Button } from '@material-ui/material';
+import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 const pages = [{ path: '/', name: 'Home' }, { path: '/trainingrequest', name: 'Training Request' }, { path: '/leaveencashment', name: 'Leave Encashment' },
 { path: '/employeeservices', name: 'Employee Services' },

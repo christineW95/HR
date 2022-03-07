@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Box from '@material-ui/material/Box';
-import Card from '@material-ui/material/Card';
-import CardActions from '@material-ui/material/CardActions';
-import CardContent from '@material-ui/material/CardContent';
-import Button from '@material-ui/material/Button';
-import Typography from '@material-ui/material/Typography';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 const bull = (
   <Box

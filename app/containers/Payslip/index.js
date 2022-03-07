@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "react-datepicker/dist/react-datepicker.css";
-import BasicDatePicker from "../../components/Datepicker";
 import OutlinedCard from "../../components/Card";
-import Button from "@material-ui/material/Button";
-import CardActions from "@material-ui/material/CardActions";
-import CardContent from "@material-ui/material/CardContent";
-import Typography from "@material-ui/material/Typography";
+import Button from "@material-ui/core/Button";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import MaterialUIPickers from "../../components/Datepicker";
 function Payslip() {
   const [actualdate, setactualdate] = useState(null);
 
@@ -20,7 +19,7 @@ function Payslip() {
     >
       <h1>Employee Details</h1>
 
-      <BasicDatePicker
+      <MaterialUIPickers
         label={"Actual Date:"}
         selected={actualdate}
         onSelect={(date) => setactualdate(date)}

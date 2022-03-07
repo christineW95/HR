@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../../components/Footer";
-import BasicDatePicker from "../../components/Datepicker";
+import MaterialUIPickers from "../../components/Datepicker";
 import MultipleSelect from "../../components/select";
 
 import EmptyTextarea from "../../components/TextArea";
@@ -60,14 +60,14 @@ function LeaveRequest() {
           Leave Balance:
           <label style={{ padding: 48 }}>{leaveBalance}</label>
         </label>
-        <BasicDatePicker
+        <MaterialUIPickers
           label={"Begin Date:"}
           selected={beginDate}
           onSelect={(date) => setbeginDate(date)}
           startDate={new Date()}
           required
         />
-        <BasicDatePicker
+        <MaterialUIPickers
           label={"End Date:"}
           selected={endDate}
           required
@@ -96,7 +96,7 @@ function LeaveRequest() {
           required
         />
 
-        <BasicDatePicker
+        <MaterialUIPickers
           label={"Expected Reporting Date:"}
           selected={reportingDate}
         />
