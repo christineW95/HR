@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Box from '@material-ui/material/Box';
+import TextField from '@material-ui/material/TextField';
 
 export default function TextInput(props) {
     const { label, required, style, name, type, value, onChange } = props;

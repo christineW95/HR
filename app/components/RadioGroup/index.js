@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import Radio from '@material-ui/material/Radio';
+import RadioGroup from '@material-ui/material/RadioGroup';
+import FormControlLabel from '@material-ui/material/FormControlLabel';
+import FormControl from '@material-ui/material/FormControl';
+import FormLabel from '@material-ui/material/FormLabel';
 
 export default function RadioButtonsGroup(props) {
     const { options, value, onChange, horizontal, label } = props;

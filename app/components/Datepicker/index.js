@@ -1,27 +1,34 @@
-import * as React from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-export default function BasicDatePicker(props) {
-    const { label ,style} = props
-    return (
-        <div style={{
-            ...containerStyle,...style,
-        }}>
-            <label style={{display:'flex',flex:3}} >{label}</label>
-            <div style={{display:'flex',flex:7,marginInline:40}}>
-            <DatePicker {...props} />
+import 'date-fns';
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
 
-            </div>
-        </div>
-    );
-}
-const containerStyle={
-    flexDirection: 'row',
-     display: 'flex',
-    flex:1,
-    alignItems: 'center',
-    padding: 5,
-    paddingBlock:20,
-    margin:5
-    
+export default function MaterialUIPickers() {
+  // The first commit of Material-UI
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  return (
+        <KeyboardDatePicker
+          disableToolbar
+          variant="inline"
+          format="MM/dd/yyyy"
+          margin="normal"
+          id="date-picker-inline"
+          label="Date picker inline"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            'aria-label': 'change date',
+          }}
+        />
+      
+  );
 }

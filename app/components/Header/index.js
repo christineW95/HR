@@ -1,27 +1,27 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import MoreIcon from '@mui/icons-material/MoreVert';
+import { styled, alpha } from '@material-ui/material/styles';
+import AppBar from '@material-ui/material/AppBar';
+import Box from '@material-ui/material/Box';
+import Toolbar from '@material-ui/material/Toolbar';
+import IconButton from '@material-ui/material/IconButton';
+import Typography from '@material-ui/material/Typography';
+import InputBase from '@material-ui/material/InputBase';
+import Badge from '@material-ui/material/Badge';
+import MenuItem from '@material-ui/material/MenuItem';
+import Menu from '@material-ui/material/Menu';
+import MenuIcon from '@material-ui/icons-material/Menu';
+import SearchIcon from '@material-ui/icons-material/Search';
+import AccountCircle from '@material-ui/icons-material/AccountCircle';
+import MailIcon from '@material-ui/icons-material/Mail';
+import NotificationsIcon from '@material-ui/icons-material/Notifications';
+import MoreIcon from '@material-ui/icons-material/MoreVert';
 import HeaderLink from './HeaderLink';
 import { FormattedMessage } from 'react-intl';
 
 import NavBar from './NavBar';
 
 import messages from './messages';
-import { Button } from '@mui/material';
+import { Button } from '@material-ui/material';
 import { Link } from 'react-router-dom';
 const pages = [{ path: '/', name: 'Home' }, { path: '/trainingrequest', name: 'Training Request' }, { path: '/leaveencashment', name: 'Leave Encashment' },
 { path: '/employeeservices', name: 'Employee Services' },

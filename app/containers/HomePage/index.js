@@ -65,6 +65,7 @@ export function HomePage({
         name="description"
         content="A React.js Boilerplate application homepage"
       />
+      <MaterialUIPickers/>
 
     </article >
   );

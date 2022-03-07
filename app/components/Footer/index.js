@@ -5,7 +5,7 @@ import A from 'components/A';
 import LocaleToggle from 'containers/LocaleToggle';
 import Wrapper from './Wrapper';
 import messages from './messages';
-import { Button } from '@mui/material';
+import { Button } from '@material-ui/material';
 
 function Footer() {
   return (

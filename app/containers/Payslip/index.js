@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import BasicDatePicker from "../../components/Datepicker";
 import OutlinedCard from "../../components/Card";
-import Button from "@mui/material/Button";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import Button from "@material-ui/material/Button";
+import CardActions from "@material-ui/material/CardActions";
+import CardContent from "@material-ui/material/CardContent";
+import Typography from "@material-ui/material/Typography";
 function Payslip() {
   const [actualdate, setactualdate] = useState(null);
 
