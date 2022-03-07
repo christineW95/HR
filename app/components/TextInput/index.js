@@ -13,6 +13,7 @@ export default function TextInput(props) {
             <label>{label}</label>
             <TextField
                 required={required}
+                variant="outlined"
                 type={type}
                 value={value}
                 onChange={onChange}

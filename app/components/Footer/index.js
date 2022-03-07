@@ -16,9 +16,9 @@ function Footer() {
 
     }}>
 
-      <Button variant="contained" style={{ margin: 20 }}>Save</Button>
-      <Button variant="contained" style={{ margin: 20 }}>Edit</Button>
-      <Button variant="contained" style={{ margin: 20 }}>Cancel</Button>
+      <Button variant="contained" color="primary" style={{ margin: 20 }}>Save</Button>
+      <Button variant="contained"  color="primary" style={{ margin: 20 }}>Edit</Button>
+      <Button variant="contained" color="primary" style={{ margin: 20 }}>Cancel</Button>
     </div>
 
   );

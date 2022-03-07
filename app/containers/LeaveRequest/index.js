@@ -10,8 +10,8 @@ function LeaveRequest() {
   const [country, setCountry] = React.useState("");
   //TODO:retrieve from API
   let leaveBalance = 25;
-  let reportingDate = new Date();
-  const [beginDate, setbeginDate] = React.useState(new Date());
+  let reportingDate = new Date().toISOString().split('T')[0]
+  const [beginDate, setbeginDate] = React.useState(null);
   const [endDate, setendDate] = React.useState(null);
   const [numberOfDays, setnumberOfDays] = React.useState(null);
   const [address, setaddress] = React.useState(null);
@@ -58,33 +58,9 @@ function LeaveRequest() {
 
         <label style={{ padding: 7 }}>
           Leave Balance:
-          <label style={{ padding: 48 }}>{leaveBalance}</label>
+          <label style={{ padding: 52 }}>{leaveBalance}</label>
         </label>
-        <MaterialUIPickers
-          label={"Begin Date:"}
-          selected={beginDate}
-          onSelect={(date) => setbeginDate(date)}
-          startDate={new Date()}
-          required
-        />
-        <MaterialUIPickers
-          label={"End Date:"}
-          selected={endDate}
-          required
-          onSelect={(date) => {
-            setendDate(date);
-            if (beginDate) {
-              var Difference_In_Time = date.getTime() - beginDate.getTime();
-
-              // To calculate the no. of days between two dates
-              var Difference_In_Days = Math.round(
-                Difference_In_Time / (1000 * 3600 * 24)
-              );
-              if (Difference_In_Days > 0) setduration(Difference_In_Days);
-              else alert("End date must be after Begin Date");
-            }
-          }}
-        />
+      
 
         <TextInput
           label=" Number of days:"
@@ -96,10 +72,7 @@ function LeaveRequest() {
           required
         />
 
-        <MaterialUIPickers
-          label={"Expected Reporting Date:"}
-          selected={reportingDate}
-        />
+        
         <EmptyTextarea
           label="Address during Leave"
           name="address"
@@ -133,6 +106,35 @@ function LeaveRequest() {
           value={replacement}
           onChange={(e) => setreplacement(e.target.value)}
           required
+        />
+        <MaterialUIPickers
+          label={"Expected Reporting Date:"}
+          value={reportingDate}
+        />
+          <MaterialUIPickers
+          label={"Begin Date:"}
+          value={beginDate}
+          onSelect={(e) => setbeginDate(e.target.value)}
+        
+          required
+        />
+        <MaterialUIPickers
+          label={"End Date:"}
+          value={endDate}
+          required
+          onSelect={(e) => {
+            setendDate(e.target.value);
+            if (beginDate) {
+              var Difference_In_Time =new Date(endDate).getTime() - new Date(beginDate).getTime();
+
+              // To calculate the no. of days between two dates
+              var Difference_In_Days = Math.round(
+                Difference_In_Time / (1000 * 3600 * 24)
+              );
+              if (Difference_In_Days > 0) setduration(Difference_In_Days);
+              else alert("End date must be after Begin Date");
+            }
+          }}
         />
         <EmptyTextarea
           label="Remarks:"

@@ -57,6 +57,7 @@ export default function MultipleSelect(props) {
                 id="demo-multiple-name"
                 value={value}
                 onChange={onChange}
+                variant='outlined'
                 MenuProps={MenuProps}
             >
                 {names.map((name) => (

@@ -14,21 +14,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MaterialUIPickers() {
+export default function MaterialUIPickers(props) {
   const classes = useStyles();
-
+  const { label ,style,value,onSelect,required} = props
   return (
-    <form className={classes.container} noValidate>
+    <div style={{
+      ...containerStyle,...style,
+  }}>
+      <label style={{display:'flex',flex:3}} >{label}</label>
+      <div style={{display:'flex',flex:7,paddingInlineStart:20}}>
       <TextField
+value={value}
+required={required}
+ onChange={onSelect}
+variant='outlined'
+defaultValue={new Date().toISOString().split('T')[0]}
         id="date"
-        label="Birthday"
         type="date"
-        defaultValue="2017-05-24"
         className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
+
       />
-    </form>
+        </div>
+        </div>
+    
   );
+}
+const containerStyle={
+  flexDirection: 'row',
+   display: 'flex',
+  flex:1,
+  alignItems: 'center',
+  paddingBlock:20,
+  margin:5
+  
 }
