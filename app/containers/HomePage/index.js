@@ -32,6 +32,8 @@ import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import { Button } from '@material-ui/core';
+import RetrieveSPData from '../../services/lists/list';
 
 const key = 'home';
 
@@ -65,6 +67,9 @@ export function HomePage({
         name="description"
         content="A React.js Boilerplate application homepage"
       />
+      <Button onClick={()=>{
+        RetrieveSPData()
+      }}>Call API</Button>
 
     </article >
   );
