@@ -5,14 +5,17 @@ export default function EmptyTextarea(props) {
     const { label } = props
     return (
         <div style={{
-            flexDirection: 'row', display: 'flex',
-            alignItems: 'center', justifyContent: 'space-between',
-            padding: 5
+            padding:5
+            
+           
         }}>
-            <label>{label}</label>
+            {/* <label>{label}</label> */}
             <TextareaAutosize
+            placeholder={label}
                 {...props}
-                style={{ display: 'flex', width: 300, margin: 10,borderRadius:3,padding:15,backgroundColor:'transparent',borderColor:'lightgray' }}
+                color={props.required && !props.value ? 'secondary' : 'success'}
+
+                style={{ display: 'flex', width: 300, borderRadius:3,padding:15,backgroundColor:'#fff',borderColor:'lightgray' }}
             />
         </div>
 

@@ -40,27 +40,28 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelect(props) {
-    const { value, onChange, required, options } = props
+    const { value, onChange, required, options ,label} = props
     const theme = useTheme();
 
     return (
         <div style={{
-            padding: 5, flexDirection: 'row', display: 'flex',
-            alignItems: 'center', justifyContent: 'space-between'
+            padding: 5, 
         }}>
-
-            <label>{props.label}</label>
-            <Select
-                style={{ display: 'flex', width: 300, margin: 10 }}
-                required={required}
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                value={value}
-                onChange={onChange}
-                variant='outlined'
-                MenuProps={MenuProps}
-            >
-                {names.map((name) => (
+       
+   <FormControl variant="outlined">
+   <InputLabel id="demo-simple-select-label">{label}</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          style={{ display: 'flex', width: 300,backgroundColor:'#fff' }}
+          required={required}
+          value={value}
+          color={required && !value ? 'secondary' : 'success'}
+          onChange={onChange}
+          variant='outlined'
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
                     <MenuItem
                         key={name}
                         value={name}
@@ -69,7 +70,9 @@ export default function MultipleSelect(props) {
                         {name}
                     </MenuItem>
                 ))}
-            </Select>
+        </Select>
+      </FormControl>
+         
         </div>
     );
 }

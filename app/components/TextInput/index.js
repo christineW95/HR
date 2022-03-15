@@ -10,15 +10,17 @@ export default function TextInput(props) {
             alignItems: 'center', justifyContent: 'space-between',
             padding: 5
         }}>
-            <label>{label}</label>
+            {/* <label>{label}</label> */}
             <TextField
                 required={required}
                 variant="outlined"
                 type={type}
+                label={label}
                 value={value}
                 onChange={onChange}
+                color={required && !value ? 'secondary' : 'success'}
                 name={name}
-                style={style}
+                style={{style,backgroundColor:'#fff'}}
                 id="demo-helper-text-misaligned"
 
             />

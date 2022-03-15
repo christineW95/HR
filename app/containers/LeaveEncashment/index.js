@@ -1,6 +1,7 @@
 import { Button, TextareaAutosize } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import Footer from '../../components/Footer';
+import PageHeader from '../../components/PageHeader';
 import MultipleSelect from '../../components/select';
 import UnstyledSelectSimple from '../../components/select';
 import EmptyTextarea from '../../components/TextArea';
@@ -29,12 +30,12 @@ function LeaveEncashment() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
             }}>
-                <h1>Request Details</h1>
+                <PageHeader/>
 
 
                 {/* TODO:send the options */}
                 <MultipleSelect
-                    label="Type of Leave:"
+                    label="Type of Leave"
                     options={options}
                     value={typeOfLeave}
                     onChange={e => settypeOfLeave(e.target.value)}

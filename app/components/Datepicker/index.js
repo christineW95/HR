@@ -31,6 +31,9 @@ variant='outlined'
 defaultValue={new Date().toISOString().split('T')[0]}
         id="date"
         type="date"
+        style={{
+          backgroundColor:'#fff'
+        }}
         className={classes.textField}
 
       />

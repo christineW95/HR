@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import MaterialUIPickers from '../../components/Datepicker';
 import Footer from '../../components/Footer';
+import PageHeader from '../../components/PageHeader';
 import EmptyTextarea from '../../components/TextArea';
 import TextInput from '../../components/TextInput';
 function TrainingRequest() {
@@ -31,7 +32,7 @@ function TrainingRequest() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
             }}>
-                <h1>Request Details</h1>
+                <PageHeader/>
                 <TextInput
                     label="Course Name:"
                     style={{ display: 'flex', width: 300, margin: 10 }}
@@ -73,7 +74,9 @@ function TrainingRequest() {
 
                 <TextInput
                     label="Cost:"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
+                    style={{ display: 'flex', width: 300, margin: 10 ,
+            backgroundColor:'white',
+        }}
                     name="cost"
                     type={'number'}
                     value={cost}
