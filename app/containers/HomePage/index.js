@@ -19,28 +19,34 @@ import {
   makeSelectLoading,
   makeSelectError,
 } from 'containers/App/selectors';
-import H2 from 'components/H2';
-import ReposList from 'components/ReposList';
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
-import messages from './messages';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import{ AccessAlarmOutlined, AccessAlarmSharp, BubbleChart, BubbleChartSharp, CalendarTodaySharp, EventNoteSharp, ExplicitSharp, ExposureNeg1Sharp, ExposureRounded, FolderSharedSharp, HomeSharp, InsertDriveFileSharp, ListAltSharp, LocalAtmSharp, PagesOutlined, PlayCircleFilledSharp, ThreeDRotation } from '@material-ui/icons';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import Icon from '@material-ui/core/Icon';
 import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { Button } from '@material-ui/core';
 import RetrieveSPData from '../../services/lists/list';
-import CustomizedSteppers from '../../components/Stepper';
-import NumberSteppers from '../../components/Stepper/NumberSteps';
 import SpacingGrid from '../../components/Grid';
-import FloatingActionButtons from '../../components/FAB';
 
 const key = 'home';
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,padding:20,
+    margin:50
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 export function HomePage({
   username,
   loading,
@@ -51,6 +57,7 @@ export function HomePage({
 }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
+  const classes = useStyles();
 
   useEffect(() => {
     // When initial state username is not null, submit the form to load repos
@@ -63,7 +70,15 @@ export function HomePage({
     repos,
   };
 
-
+  const pages = [
+    { path: '/trainingrequest', name: 'Training Request',icon:<ListAltSharp  color="secondary"  fontSize='large'/> },
+     { path: '/leaveencashment', name: 'Leave Encashment' ,icon:<LocalAtmSharp  color="secondary"  fontSize='large'/>},
+   { path: '/employeeservices', name: 'Employee Services',icon:<FolderSharedSharp  color="secondary"  fontSize='large'/> },
+   { path: '/leavebalance', name: 'Leave Balance' ,icon:<ExposureRounded color="secondary"  fontSize='large'/>},
+   { path: '/dutyresumption', name: 'Duty Resumption',icon:<PlayCircleFilledSharp color="secondary"  fontSize='large'/> },
+   { path: '/leaverequest', name: 'Leave Request' ,icon:<EventNoteSharp color="secondary"  fontSize='large'/>},
+   { path: '/payslip', name: 'Payslip' ,icon:<InsertDriveFileSharp color="secondary"  fontSize='large' />},
+   ];
   return (
     <article>
       <title>Home Page</title>
@@ -75,7 +90,32 @@ export function HomePage({
         RetrieveSPData()
       }}>Call API</Button>
     
-      <SpacingGrid/>
+      <SpacingGrid pages={pages}>
+      {pages.map((page) => (
+                 <Grid item xs={6} sm={4}>
+              <Paper className={classes.paper} style={{display:'flex',margin:5,padding:20,alignItems:'center',
+               boxShadow: "2px 4px 2px 2px #9E9E9E",flexDirection:'column'}} >
+{page.icon}
+
+<Button
+                  key={page.name}
+                
+                >
+                  <Link to={page.path} style={{
+                    whiteSpace: 'nowrap',
+                    textAlign: 'justify',
+                    color: 'primary',
+                    fontWeight:'bold',
+                    fontSize:18,
+                    textDecoration:'none'
+                  }}>
+                    {page.name}
+                  </Link>
+                </Button>
+              </Paper>
+            </Grid>
+          ))}
+      </SpacingGrid>
 
     </article >
   );

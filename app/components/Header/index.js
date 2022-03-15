@@ -23,12 +23,8 @@ import NavBar from './NavBar';
 import messages from './messages';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-const pages = [{ path: '/', name: 'Home' }, { path: '/trainingrequest', name: 'Training Request' }, { path: '/leaveencashment', name: 'Leave Encashment' },
-{ path: '/employeeservices', name: 'Employee Services' },
-{ path: '/leavebalance', name: 'Leave Balance' },
-{ path: '/dutyresumption', name: 'Duty Resumption' },
-{ path: '/leaverequest', name: 'Leave Request' },
-{ path: '/payslip', name: 'Payslip' },
+import { HomeSharp } from '@material-ui/icons';
+const pages =[{ path: '/', name: 'Home',icon:<HomeSharp  color="secondary"  fontSize='large'/> }
 ];
 
 const data = [{
@@ -249,6 +245,7 @@ export default function Header() {
                   key={page.name}
                   sx={{ my: 2, mx: 2, color: 'white', flex: 1 }}
                 >
+                  {page.icon}
                   <Link to={page.path} style={{
                     whiteSpace: 'nowrap',
                     textAlign: 'justify',
