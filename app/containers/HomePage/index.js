@@ -6,8 +6,6 @@
 
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -26,7 +24,6 @@ import Grid from '@material-ui/core/Grid';
 import{ AccessAlarmOutlined, AccessAlarmSharp, BubbleChart, BubbleChartSharp, CalendarTodaySharp, EventNoteSharp, ExplicitSharp, ExposureNeg1Sharp, ExposureRounded, FolderSharedSharp, HomeSharp, InsertDriveFileSharp, ListAltSharp, LocalAtmSharp, PagesOutlined, PlayCircleFilledSharp, ThreeDRotation } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import Icon from '@material-ui/core/Icon';
 import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';

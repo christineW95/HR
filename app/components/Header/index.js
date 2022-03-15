@@ -21,7 +21,7 @@ import { FormattedMessage } from 'react-intl';
 import NavBar from './NavBar';
 
 import messages from './messages';
-import { Button } from '@material-ui/core';
+import { Button, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { HomeSharp } from '@material-ui/icons';
 const pages =[{ path: '/', name: 'Home',icon:<HomeSharp  color="secondary"  fontSize='large'/> }
@@ -314,7 +314,7 @@ export default function Header() {
         {renderMenu}
       </Box>
       {listItems}
-
+<Divider/>
     </div >
 
   );

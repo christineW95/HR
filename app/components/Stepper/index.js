@@ -1,18 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+import { makeStyles,withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
-import Check from '@material-ui/icons/Check';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+
+import StepConnector from '@material-ui/core/StepConnector';
+
+import Button from '@material-ui/core/Button';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
-import StepConnector from '@material-ui/core/StepConnector';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 const QontoConnector = withStyles({
   alternativeLabel: {
     top: 10,
@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
-  button: {
+  backButton: {
     marginRight: theme.spacing(1),
   },
   instructions: {
@@ -183,27 +183,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
+  return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
 }
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return 'Select campaign settings...';
-    case 1:
-      return 'What is an ad group anyways?';
-    case 2:
-      return 'This is the bit I really care about!';
-    default:
-      return 'Unknown step';
-  }
-}
 
-export default function CustomizedSteppers() {
+
+export default function HorizontalLabelPositionBelowStepper(props) {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(1);
-  const steps = getSteps();
+  const [activeStep, setActiveStep] = React.useState(0);
+  // const steps = getSteps();
+  const {steps}=props
 
+  function getStepContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return steps[0].content;
+      case 1:
+        return steps[1].content;
+      case 2:
+        return steps[2].content;
+        case 3:
+        return steps[3].content;
+      default:
+        return 'Unknown stepIndex';
+    }
+  }
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -218,37 +222,31 @@ export default function CustomizedSteppers() {
 
   return (
     <div className={classes.root}>
-      
-      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-        {steps.map((label) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+      <Stepper activeStep={activeStep} alternativeLabel connector={<ColorlibConnector />}>
+        {steps.map((step) => (
+          <Step key={step.label}>
+            <StepLabel  StepIconComponent={ColorlibStepIcon}>{step.label}</StepLabel>
           </Step>
         ))}
       </Stepper>
       <div>
         {activeStep === steps.length ? (
           <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
+            <Typography className={classes.instructions}>All steps completed</Typography>
+            <Button onClick={handleReset}>Reset</Button>
           </div>
         ) : (
           <div>
             <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+            <div style={{alignItems:'center',display:'flex',flex:1}}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.backButton}
+              >
                 Back
               </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
+              <Button variant="contained" color="primary" onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
             </div>
