@@ -34,6 +34,10 @@ import reducer from './reducer';
 import saga from './saga';
 import { Button } from '@material-ui/core';
 import RetrieveSPData from '../../services/lists/list';
+import CustomizedSteppers from '../../components/Stepper';
+import NumberSteppers from '../../components/Stepper/NumberSteps';
+import SpacingGrid from '../../components/Grid';
+import FloatingActionButtons from '../../components/FAB';
 
 const key = 'home';
 
@@ -70,6 +74,8 @@ export function HomePage({
       <Button onClick={()=>{
         RetrieveSPData()
       }}>Call API</Button>
+    
+      <SpacingGrid/>
 
     </article >
   );
