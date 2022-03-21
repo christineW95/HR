@@ -239,8 +239,8 @@ setIsSaved(true)
             <Button onClick={handleReset} style={{backgroundColor:'lightgray'}}>Reset</Button>
           </div>
         ) : (
-          <div>
-            <Typography >{getStepContent(activeStep)}</Typography>
+          <div >
+            <Typography style={{display:'flex',flexDirection:'column',flex:1,justifyContent:'flex-start',margin:100}}>{getStepContent(activeStep)}</Typography>
             <div style={{alignItems:'center',display:'flex',flex:1 , justifyContent:'space-around'}}>
               <Button
               style={{backgroundColor:'lightgray'}}

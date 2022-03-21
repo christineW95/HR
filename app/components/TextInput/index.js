@@ -8,9 +8,9 @@ export default function TextInput(props) {
         <div style={{
             flexDirection: 'row', display: 'flex',
             alignItems: 'center', justifyContent: 'space-between',
-            padding: 5
+            padding: 5,
+            marginBlock:5
         }}>
-            {/* <label>{label}</label> */}
             <TextField
                 required={required}
                 variant="outlined"

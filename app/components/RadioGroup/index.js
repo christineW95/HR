@@ -9,15 +9,11 @@ export default function RadioButtonsGroup(props) {
     const { options, value, onChange, horizontal, label } = props;
     return (
         <FormControl>
-            <div style={{
-                flexDirection: 'row', display: 'flex',
-                alignItems: 'center', justifyContent: 'space-between',
-                padding: 5
-            }}>
-
-                {label ? <label>{label}</label>
+               {label ? <label style={{fontWeight:'bold'}}>{label}</label>
                     : null}
+             
                 <RadioGroup
+                
                     row={horizontal}
                     aria-labelledby="demo-radio-buttons-group-label"
                     name="radio-buttons-group"
@@ -34,7 +30,6 @@ export default function RadioButtonsGroup(props) {
                         )
                     }
                 </RadioGroup>
-            </div>
 
         </FormControl>
     );

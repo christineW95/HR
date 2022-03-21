@@ -6,6 +6,10 @@ import MultipleSelect from '../../components/select';
 import UnstyledSelectSimple from '../../components/select';
 import EmptyTextarea from '../../components/TextArea';
 import TextInput from '../../components/TextInput';
+import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
+import CustomizedSteppers from '../../components/Stepper';
+import Summary from '../../components/Summary';
+import PageHeader from '../../components/PageHeader';
 function EmployeeServices() {
     const [type, setType] = useState('')
     const [language, setLanguage] = useState('')
@@ -13,23 +17,23 @@ function EmployeeServices() {
     const [purpose, setpurpose] = React.useState('');
     const [to, setTo] = React.useState(null);
     const [remarks, setremarks] = React.useState('');
+    const [show, setShow] = useState(false)
 
 
     const handleSubmit = event => {
         //TODO:handle submit call API
         event.preventDefault();
     };
-
-    return (
-        <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column' }}>
-            <form onSubmit={handleSubmit} style={{
-                flexGrow: 1,
-                display: 'grid',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-            }}>
-                <h1>Request Details</h1>
-                <RadioButtonsGroup
+    const steps = [
+        {
+            step: 1,
+            label:'Request Details',
+            completed: false,
+            valid:false,
+            icon:<DetailsSharp/>,
+            content: <>
+             <RadioButtonsGroup
+             label={'Service Type'}
                     value={type}
                     onChange={e => setType(e)}
                     options={[{
@@ -63,38 +67,77 @@ function EmployeeServices() {
                         label: 'Arabic'
                     },
                     ]} />
+            </>
+        },
+        {
+            step: 2,
+            label:'To Whom',
+            completed: false,
+            valid: false,
+            icon:<CalendarToday/>,
+            content: <> <TextInput
+            label="To"
+            style={{ display: 'flex', width: 300, margin: 10 }}
+            name="to"
+            value={to}
+            onChange={e => setTo(e.target.value)}
+            required />
 
+        <TextInput
+            label="Purpose"
+            style={{ display: 'flex', width: 300, margin: 10 }}
+            name="purpose"
+            value={purpose}
+            onChange={e => setpurpose(e.target.value)}
+            required />
+            </>
 
-                <TextInput
-                    label="To"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="to"
-                    value={to}
-                    onChange={e => setTo(e.target.value)}
-                    required />
+        },
+        
+        {
+            step: 3,
+            label:"Additional Details",
+            completed: false,
+            icon:<CreateSharp/>,
+            valid: false,
+            content: <> <EmptyTextarea
+                label='Remarks:'
+                name="remarks"
+                value={remarks}
+                onChange={e => setremarks(e.target.value)}
+            />
+            </>
+        }
+    ]
+    return (
+        <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
+        <Summary/>
 
-                <TextInput
-                    label="Purpose"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="purpose"
-                    value={purpose}
-                    onChange={e => setpurpose(e.target.value)}
-                    required />
+         <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
+         <Button
+             onClick={() => setShow(true)}
+             variant="contained"
+             color='primary' >
+             <Add />
+             Submit New</Button>
+         </div>
+        
+        {
+            show ? ( 
+            
 
-
-
-                <EmptyTextarea
-                    label='Remarks:'
-                    name="remarks"
-                    value={remarks}
-                    onChange={e => setremarks(e.target.value)}
-                />
-
-
-            </form>
-            <Footer />
-
-        </div >
+            <form onSubmit={handleSubmit} style={{
+              display: 'flex',
+              flexDirection:'column',
+         }}>
+             <PageHeader />
+             <CustomizedSteppers steps={steps} />
+         </form>
+        ):null
+        }
+        
+        
+     </div>
     );
 }
 
