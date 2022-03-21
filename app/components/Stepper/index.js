@@ -108,7 +108,6 @@ const ColorlibConnector = withStyles({
     borderRadius: 1,
   },
 })(StepConnector);
-
 const useColorlibStepIconStyles = makeStyles({
   root: {
     backgroundColor: '#ccc',
@@ -178,6 +177,8 @@ const useStyles = makeStyles((theme) => ({
   },
   instructions: {
     marginTop: theme.spacing(1),
+    color:'green',
+    margin:20,
     marginBottom: theme.spacing(1),
   },
 }));
@@ -188,6 +189,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HorizontalLabelPositionBelowStepper(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [isSaved, setIsSaved] = React.useState(false);
   const {steps}=props
 
   function getStepContent(stepIndex) {
@@ -216,7 +218,7 @@ export default function HorizontalLabelPositionBelowStepper(props) {
     setActiveStep(0);
   };
 const handleSave=()=>{
-
+setIsSaved(true)
 }
   return (
     <div className={classes.root}>
@@ -228,6 +230,7 @@ const handleSave=()=>{
         ))}
       </Stepper>
       <div>
+       
         {activeStep === steps.length ? (
           <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
             <Typography className={classes.instructions}>All steps completed</Typography>
@@ -255,6 +258,12 @@ const handleSave=()=>{
           </div>
         )}
       </div>
+      {
+          isSaved ? 
+           <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
+           <Typography className={classes.instructions}>All steps saved</Typography>
+         </div> : null
+        }
     </div>
   );
 }

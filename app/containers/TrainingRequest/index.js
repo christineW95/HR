@@ -9,7 +9,7 @@ import EmptyTextarea from '../../components/TextArea';
 import { makeStyles } from '@material-ui/core/styles';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import TextInput from '../../components/TextInput';
-import { Add, AssignmentLateSharp, DetailsSharp } from '@material-ui/icons';
+import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 function TrainingRequest() {
@@ -85,6 +85,7 @@ function TrainingRequest() {
             label:'Select Dates',
             completed: false,
             valid: false,
+            icon:<CalendarToday/>,
             content: <><MaterialUIPickers label={"Begin Date:"} selected={beginDate} onSelect={(date) => setbeginDate(date)} startDate={new Date()} required />
                 <MaterialUIPickers label={"End Date:"} selected={endDate} required onSelect={(date) => {
                     setendDate(date)
@@ -114,6 +115,7 @@ function TrainingRequest() {
         {
             step: 3,
             label:"Cost",
+            icon:<MonetizationOnSharp/>,
             completed: false,
             valid: false,
             content: <>  <TextInput
@@ -143,6 +145,7 @@ function TrainingRequest() {
             step: 4,
             label:"Additional Details",
             completed: false,
+            icon:<CreateSharp/>,
             valid: false,
             content: <> <EmptyTextarea
                 label='Remarks:'
