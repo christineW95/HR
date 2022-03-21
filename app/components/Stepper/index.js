@@ -13,6 +13,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import Typography from '@material-ui/core/Typography';
+import { CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 const QontoConnector = withStyles({
   alternativeLabel: {
     top: 10,
@@ -136,9 +137,10 @@ function ColorlibStepIcon(props) {
   const { active, completed } = props;
 
   const icons = {
-    1: <SettingsIcon />,
-    2: <GroupAddIcon />,
-    3: <VideoLabelIcon />,
+    1: <DetailsSharp />,
+    2: <CalendarToday />,
+    3: <MonetizationOnSharp />,
+    4: <CreateSharp />,
   };
 
   return (
