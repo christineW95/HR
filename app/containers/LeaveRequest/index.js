@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+
 import Footer from "../../components/Footer";
 import MaterialUIPickers from "../../components/Datepicker";
 import MultipleSelect from "../../components/select";
@@ -6,6 +7,14 @@ import MultipleSelect from "../../components/select";
 import EmptyTextarea from "../../components/TextArea";
 import TextInput from "../../components/TextInput";
 import { Link } from "react-router-dom";
+import { Add, ArrowUpward, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, KeyboardArrowUpSharp, MonetizationOnSharp } from '@material-ui/icons';
+import CustomizedSteppers from '../../components/Stepper';
+import Summary from '../../components/Summary';
+import { Button } from '@material-ui/core';
+import PageHeader from '../../components/PageHeader';
+import Fab from '@material-ui/core/Fab';
+import SimpleModal from '../../components/Modal';
+
 function LeaveRequest() {
   const [country, setCountry] = React.useState("");
   //TODO:retrieve from API
@@ -18,36 +27,32 @@ function LeaveRequest() {
   const [replacement, setreplacement] = React.useState(null);
   const [remarks, setremarks] = React.useState("");
   const [phone, setphone] = React.useState(null);
-
+  const [show, setShow] = useState(false)
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   let options = [];
   const [typeOfLeave, settypeOfLeave] = React.useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
   };
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        padding: 100,
-        flexDirection: "column",
-      }}
-    >
-     
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          flexGrow: 1,
-          display: "grid",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-      
-        <h1>Request Details</h1>
-
-        {/* TODO:send the options */}
+  const steps = [
+    {
+        step: 1,
+        label:'Leave Details',
+        completed: false,
+        valid:false,
+        icon:<DetailsSharp/>,
+        content: <>
+       
+            <label style={{ padding: 7 }}>
+          Leave Balance:
+          <label style={{ padding: 52 }}>{leaveBalance}</label>
+        </label>
         <MultipleSelect
           label="Type of Leave:"
           options={options}
@@ -55,14 +60,7 @@ function LeaveRequest() {
           onChange={(e) => settypeOfLeave(e.target.value)}
           required
         />
-
-        <label style={{ padding: 7 }}>
-          Leave Balance:
-          <label style={{ padding: 52 }}>{leaveBalance}</label>
-        </label>
-      
-
-        <TextInput
+         <TextInput
           label=" Number of days:"
           style={{ display: "flex", width: 300, margin: 10 }}
           name="numofdays"
@@ -71,9 +69,54 @@ function LeaveRequest() {
           onChange={(e) => setnumberOfDays(e.target.value)}
           required
         />
+        </>
+    },
+    {
+        step: 2,
+        label:'Select Dates',
+        completed: false,
+        valid: false,
+        icon:<CalendarToday/>,
+        content: <> <MaterialUIPickers
+        label={"Expected Reporting Date:"}
+        value={reportingDate}
+      />
+        <MaterialUIPickers
+        label={"Begin Date:"}
+        value={beginDate}
+        onSelect={(e) => setbeginDate(e.target.value)}
+      
+        required
+      />
+      <MaterialUIPickers
+        label={"End Date:"}
+        value={endDate}
+        required
+        onSelect={(e) => {
+          setendDate(e.target.value);
+          if (beginDate) {
+            var Difference_In_Time =new Date(endDate).getTime() - new Date(beginDate).getTime();
 
-        
-        <EmptyTextarea
+            // To calculate the no. of days between two dates
+            var Difference_In_Days = Math.round(
+              Difference_In_Time / (1000 * 3600 * 24)
+            );
+            if (Difference_In_Days > 0) setduration(Difference_In_Days);
+            else alert("End date must be after Begin Date");
+          }
+        }}
+      />
+        </>
+
+    },
+    {
+        step: 3,
+        label:"Leave Information",
+        icon:<MonetizationOnSharp/>,
+        completed: false,
+        valid: false,
+        content: <> 
+          <EmptyTextarea
           label="Address during Leave"
           name="address"
           value={address}
@@ -107,71 +150,58 @@ function LeaveRequest() {
           onChange={(e) => setreplacement(e.target.value)}
           required
         />
-        <MaterialUIPickers
-          label={"Expected Reporting Date:"}
-          value={reportingDate}
-        />
-          <MaterialUIPickers
-          label={"Begin Date:"}
-          value={beginDate}
-          onSelect={(e) => setbeginDate(e.target.value)}
-        
-          required
-        />
-        <MaterialUIPickers
-          label={"End Date:"}
-          value={endDate}
-          required
-          onSelect={(e) => {
-            setendDate(e.target.value);
-            if (beginDate) {
-              var Difference_In_Time =new Date(endDate).getTime() - new Date(beginDate).getTime();
 
-              // To calculate the no. of days between two dates
-              var Difference_In_Days = Math.round(
-                Difference_In_Time / (1000 * 3600 * 24)
-              );
-              if (Difference_In_Days > 0) setduration(Difference_In_Days);
-              else alert("End date must be after Begin Date");
-            }
-          }}
+        </>
+    },
+    {
+        step: 4,
+        label:"Additional Details",
+        completed: false,
+        icon:<CreateSharp/>,
+        valid: false,
+        content: <> 
+         <EmptyTextarea
+            label='Remarks:'
+            name="remarks"
+            value={remarks}
+            onChange={e => setremarks(e.target.value)}
         />
-        <EmptyTextarea
-          label="Remarks:"
-          name="remarks"
-          value={remarks}
-          onChange={(e) => setremarks(e.target.value)}
-        />
-           <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
-        <Link
-          to={"/dutyresumption"}
-          style={{
-            whiteSpace: "nowrap",
-            textAlign: "justify",
-            textDecoration: "none",
-          }}
-        >
-          View Completed Requests
-        </Link>
-        <Link
-          to={"/cancelleaverequest"}
-          style={{
-            whiteSpace: "nowrap",
-            textAlign: "justify",
-            textDecoration: "none",
-          }}
-        >
-          View Current Requests
-        </Link>
-      </div>
-      </form>
-      <Footer />
+     
+          
+        </>
+    }
+]
+  return (
+    <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
+
+<Summary/>
+
+<div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
+<Button
+    onClick={() => setShow(true)}
+    variant="contained"
+    color='primary' >
+    <Add />
+    Submit New</Button>
+</div>
+{
+               show ? ( <form onSubmit={handleSubmit} style={{
+                display: 'flex',
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+            }}>
+                <PageHeader />
+                <CustomizedSteppers steps={steps} />
+            </form>):null
+           }
+           <div>
+
+           <Fab color={'secondary'} style={{float:'right'}} onClick={handleOpen}>
+           <KeyboardArrowUpSharp/>
+          </Fab>
+           <SimpleModal open={open} handleClose={handleClose}/>           </div>
+           
     </div>
   );
 }
