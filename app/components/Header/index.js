@@ -24,7 +24,7 @@ import messages from './messages';
 import { Button, Divider } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { HomeSharp } from '@material-ui/icons';
-const pages =[{ path: '/', name: 'Home',icon:<HomeSharp  color="secondary"  fontSize='large'/> }
+const pages =[{ path: '/', name: 'Home',icon:<HomeSharp  style={{ color: '#fff' }} fontSize='large'/> }
 ];
 
 const data = [{
@@ -86,45 +86,7 @@ const listItems = data.map((item) =>
     <label>{item['labelEN']}</label>
   </div>
 );
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -227,23 +189,17 @@ export default function Header() {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static"  style={{backgroundColor:'#01579b'}}>
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
+           
 
             <Box sx={{ flex: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
+                
                   key={page.name}
-                  sx={{ my: 2, mx: 2, color: 'white', flex: 1 }}
+                  style={{alignItems:'center',display:'flex',justifyContent:'center'}}
+                  sx={{ my: 2, mx: 2, color: 'white', flex: 1, }}
                 >
                   {page.icon}
                   <Link to={page.path} style={{
@@ -258,31 +214,10 @@ export default function Header() {
               ))}
             </Box>
 
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Search>
+         
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="error">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+             
               <IconButton
                 size="large"
                 edge="end"
