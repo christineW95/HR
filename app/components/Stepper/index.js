@@ -240,7 +240,7 @@ setIsSaved(true)
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography >{getStepContent(activeStep)}</Typography>
             <div style={{alignItems:'center',display:'flex',flex:1 , justifyContent:'space-around'}}>
               <Button
               style={{backgroundColor:'lightgray'}}
