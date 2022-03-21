@@ -169,7 +169,8 @@ function TrainingRequest() {
                 Submit New</Button>
             </div>
            
-            <form onSubmit={handleSubmit} style={{
+           {
+               show ? ( <form onSubmit={handleSubmit} style={{
                 display: 'flex',
                 flex: 1,
                 flexDirection: 'column',
@@ -177,7 +178,9 @@ function TrainingRequest() {
             }}>
                 <PageHeader />
                 <CustomizedSteppers steps={steps} />
-            </form>
+            </form>):null
+           }
+           
            
         </div>
     );
