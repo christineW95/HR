@@ -9,8 +9,9 @@ import EmptyTextarea from '../../components/TextArea';
 import { makeStyles } from '@material-ui/core/styles';
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import TextInput from '../../components/TextInput';
-import { Add, AssignmentLateSharp } from '@material-ui/icons';
+import { Add, AssignmentLateSharp, DetailsSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
+import Summary from '../../components/Summary';
 function TrainingRequest() {
 
     const [courseName, setcourseName] = React.useState('');
@@ -25,21 +26,8 @@ function TrainingRequest() {
     const [trainingProvider, settrainingProvider] = React.useState('');
     const [remarks, setremarks] = React.useState('');
     const [show, setShow] = useState(false)
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            flexGrow: 1, padding: 20,
-            margin: 50
-            ,justifyContent:'center',alignItems:'center',
-        },
-        paper: {
-            height: 300,
-            width:250,
-            textAlign: 'center',
-            color: theme.palette.text.secondary,
-        },
-    }));
-    const classes = useStyles();
 
+   
     const handleSubmit = event => {
         //TODO:handle submit call API
         event.preventDefault();
@@ -50,6 +38,7 @@ function TrainingRequest() {
             label:'Training Details',
             completed: false,
             valid:false,
+            icon:<DetailsSharp/>,
             content: <>
               <label style={{ padding: 7 }}>
                     Request Date:
@@ -166,53 +155,17 @@ function TrainingRequest() {
     ]
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-            <div className={classes.root} >
-                <Grid container spacing={5} style={{alignItems:'center'}}>
-                    <Grid xs={12} sm={6}>
-                        <Paper className={classes.paper} style={{
-                            display: 'flex', margin: 10, padding: 20, justifyContent: 'center', borderRadius: 200, alignItems: 'center',
-                            boxShadow: "2px 4px 2px 2px #9E9E9E", flexDirection: 'column'
-                        }} >
-                            <AssignmentTurnedInIcon color='secondary' style={{ fontSize: 100, marginBlock: 20 }} />
-                            <Link to={"page.path"} style={{
-                                whiteSpace: 'nowrap',
-                                textAlign: 'justify',
-                                color: 'primary',
-                                fontWeight: 'bold',
-                                fontSize: 18,
-                                textDecoration: 'none'
-                            }}>
-                                Completed Requests
-                            </Link>
-                        </Paper>
-                    </Grid>
-                    <Grid xs={12} sm={6}>
-                        <Paper className={classes.paper} style={{
-                            display: 'flex', margin: 10, padding: 20, justifyContent: 'center', borderRadius: 200, alignItems: 'center',
-                            boxShadow: "2px 4px 2px 2px #9E9E9E", flexDirection: 'column'
-                        }} >
-                            <AssignmentLateSharp color='secondary' style={{ fontSize: 100, marginBlock: 20 }} />
+           <Summary/>
 
-                            <Link to={"page.path"} style={{
-                                whiteSpace: 'nowrap',
-                                textAlign: 'justify',
-                                color: 'primary',
-                                fontWeight: 'bold',
-                                fontSize: 18,
-                                textDecoration: 'none'
-                            }}>
-                                Opened Requests
-                            </Link>
-                        </Paper>
-                    </Grid>
-                </Grid>
-            </div>
+            <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
             <Button
                 onClick={() => setShow(true)}
                 variant="contained"
                 color='primary' >
                 <Add />
                 Submit New</Button>
+            </div>
+           
             <form onSubmit={handleSubmit} style={{
                 display: 'flex',
                 flex: 1,
@@ -221,10 +174,6 @@ function TrainingRequest() {
             }}>
                 <PageHeader />
                 <CustomizedSteppers steps={steps} />
-
-
-
-
             </form>
            
         </div>

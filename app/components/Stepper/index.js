@@ -182,16 +182,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function getSteps() {
-  return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
-}
 
 
 
 export default function HorizontalLabelPositionBelowStepper(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-  // const steps = getSteps();
   const {steps}=props
 
   function getStepContent(stepIndex) {
@@ -219,7 +215,9 @@ export default function HorizontalLabelPositionBelowStepper(props) {
   const handleReset = () => {
     setActiveStep(0);
   };
+const handleSave=()=>{
 
+}
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel connector={<ColorlibConnector />}>
@@ -231,15 +229,16 @@ export default function HorizontalLabelPositionBelowStepper(props) {
       </Stepper>
       <div>
         {activeStep === steps.length ? (
-          <div>
+          <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
             <Typography className={classes.instructions}>All steps completed</Typography>
-            <Button onClick={handleReset}>Reset</Button>
+            <Button onClick={handleReset} style={{backgroundColor:'lightgray'}}>Reset</Button>
           </div>
         ) : (
           <div>
             <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-            <div style={{alignItems:'center',display:'flex',flex:1}}>
+            <div style={{alignItems:'center',display:'flex',flex:1 , justifyContent:'space-around'}}>
               <Button
+              style={{backgroundColor:'lightgray'}}
                 disabled={activeStep === 0}
                 onClick={handleBack}
                 className={classes.backButton}
@@ -248,6 +247,9 @@ export default function HorizontalLabelPositionBelowStepper(props) {
               </Button>
               <Button variant="contained" color="primary" onClick={handleNext}>
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+              </Button>
+              <Button variant="contained" color="primary" onClick={handleSave}>
+               Save
               </Button>
             </div>
           </div>
