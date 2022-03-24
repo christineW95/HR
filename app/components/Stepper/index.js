@@ -1,11 +1,16 @@
 import React from 'react';
-import { makeStyles,withStyles } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
+import {
+  CalendarToday,
+  CreateSharp,
+  DetailsSharp,
+  MonetizationOnSharp,
+} from '@material-ui/icons';
 
 import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
@@ -18,7 +23,7 @@ const ColorlibConnector = withStyles({
   active: {
     '& $line': {
       backgroundImage:
-      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+        'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     },
   },
   completed: {
@@ -31,15 +36,11 @@ const ColorlibConnector = withStyles({
     height: 3,
     border: 0,
     backgroundColor: '#eaeaf0',
-    borderRadius: 1,        
+    borderRadius: 1,
   },
 })(StepConnector);
 
-
-
-
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
   },
@@ -51,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(1),
   },
 }));
-
 
 const useColorlibStepIconStyles = makeStyles({
   root: {
@@ -77,7 +77,7 @@ const useColorlibStepIconStyles = makeStyles({
 });
 function ColorlibStepIcon(props) {
   const classes = useColorlibStepIconStyles();
-  const { active, completed,icon } = props;
+  const { active, completed, icon } = props;
 
   return (
     <div
@@ -111,7 +111,7 @@ export default function HorizontalLinearStepper(props) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const [isSaved, setIsSaved] = React.useState(false);
-  const {steps}=props
+  const { steps } = props;
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
@@ -120,19 +120,15 @@ export default function HorizontalLinearStepper(props) {
         return steps[1].content;
       case 2:
         return steps[2].content;
-        case 3:
+      case 3:
         return steps[3].content;
       default:
         return 'Unknown stepIndex';
     }
   }
-  const isStepOptional = (step) => {
-    return step === 1;
-  };
+  const isStepOptional = step => step === 1;
 
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
+  const isStepSkipped = step => skipped.has(step);
 
   const handleNext = () => {
     let newSkipped = skipped;
@@ -141,21 +137,20 @@ export default function HorizontalLinearStepper(props) {
       newSkipped.delete(activeStep);
     }
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
-
 
   const handleReset = () => {
     setActiveStep(0);
   };
-  const handleSave=()=>{
-    setIsSaved(true)
-    }
+  const handleSave = () => {
+    setIsSaved(true);
+  }
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} connector={<ColorlibConnector />}>
@@ -163,12 +158,20 @@ export default function HorizontalLinearStepper(props) {
           const stepProps = {};
           const labelProps = {};
           if (isStepOptional(index)) {
-            labelProps.optional = <Typography variant="caption">Optional</Typography>;
+            labelProps.optional = (
+              <Typography variant="caption">Optional</Typography>
+            );
           }
-         
+
           return (
             <Step key={step.label} {...stepProps}>
-              <StepLabel StepIconProps={step} StepIconComponent={ColorlibStepIcon} {...labelProps}>{step.label}</StepLabel>
+              <StepLabel
+                StepIconProps={step}
+                StepIconComponent={ColorlibStepIcon}
+                {...labelProps}
+              >
+                {step.label}
+              </StepLabel>
             </Step>
           );
         })}
@@ -185,12 +188,17 @@ export default function HorizontalLinearStepper(props) {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>
+              {getStepContent(activeStep)}
+            </Typography>
             <div>
-              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                className={classes.button}
+              >
                 Back
               </Button>
-              
 
               <Button
                 variant="contained"
@@ -201,18 +209,17 @@ export default function HorizontalLinearStepper(props) {
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
               <Button variant="contained" color="primary" onClick={handleSave}>
-               Save
+                Save
               </Button>
             </div>
           </div>
         )}
       </div>
-      {
-          isSaved ? 
-           <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
-           <Typography className={classes.instructions}>All steps saved</Typography>
-         </div> : null
-        }
+      {isSaved ? (
+          <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
+            <Typography className={classes.instructions}>All steps saved</Typography>
+          </div> : null
+      }
     </div>
   );
 }
