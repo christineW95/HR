@@ -29,6 +29,71 @@ function LeaveRequest() {
   const [phone, setphone] = React.useState(null);
   const [show, setShow] = useState(false)
   const [open, setOpen] = React.useState(false);
+  const openedRequests=[
+    {
+        title:'Test',
+        date:new Date().toLocaleString(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date().toLocaleString(),
+        actions:['view']
+    }
+]
+const savedRequests=[
+    {
+        title:'Test',
+        date: new Date().toLocaleString(),
+        actions:['view','delete']
+    },
+    {
+        title:'Test',
+        date: new Date().toLocaleString(),
+        actions:['view','delete']
+
+    },
+    {
+        title:'Test',
+        date: new Date().toLocaleString(),
+        actions:['view','delete']
+
+    }
+]
+const closedRequests=[
+    {
+        title:'Test',
+        date: new Date().toLocaleString(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date().toLocaleString(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date().toLocaleString(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date().toLocaleString(),
+        actions:['view']
+    }
+]
+const deleteRequest=(requestIndex,requestsType)=>{
+  switch(requestsType)
+  {
+      case 'open':
+          openedRequests.splice(requestIndex,1);
+          case 'closed':
+              closedRequests.splice(requestIndex,1);
+              case 'saved':
+                  savedRequests.splice(requestIndex,1);
+
+  }
+}
   const handleOpen = () => {
     setOpen(true);
   };

@@ -71,10 +71,64 @@ function DutyResumption() {
         </>
     }
 ]
+const openedRequests=[
+  {
+      title:'Test',
+      date:new Date().toLocaleString(),
+      actions:['view']
+  },
+  {
+      title:'Test',
+      date: new Date().toLocaleString(),
+      actions:['view']
+  }
+]
+const savedRequests=[
+  {
+      title:'Test',
+      date: new Date().toLocaleString(),
+      actions:['view','delete']
+  },
+  {
+      title:'Test',
+      date: new Date().toLocaleString(),
+      actions:['view','delete']
+
+  },
+  {
+      title:'Test',
+      date: new Date().toLocaleString(),
+      actions:['view','delete']
+
+  }
+]
+const closedRequests=[
+  {
+      title:'Test',
+      date: new Date().toLocaleString(),
+      actions:['view']
+  },
+  {
+      title:'Test',
+      date: new Date().toLocaleString(),
+      actions:['view']
+  },
+  {
+      title:'Test',
+      date: new Date().toLocaleString(),
+      actions:['view']
+  },
+  {
+      title:'Test',
+      date: new Date().toLocaleString(),
+      actions:['view']
+  }
+]
 let listOfLeaves=[];
   return (
     <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-  <Summary/>
+             <Summary opened={openedRequests} closed={closedRequests} saved={savedRequests} deleteRequest={deleteRequest}/>
+
 
 <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
 <Button

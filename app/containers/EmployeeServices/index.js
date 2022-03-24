@@ -20,10 +20,76 @@ function EmployeeServices() {
     const [show, setShow] = useState(false)
 
 
+    const openedRequests=[
+        {
+            title:'Test',
+            date:new Date().toLocaleString(),
+            actions:['view']
+        },
+        {
+            title:'Test',
+            date: new Date().toLocaleString(),
+            actions:['view']
+        }
+    ]
+    const savedRequests=[
+        {
+            title:'Test',
+            date: new Date().toLocaleString(),
+            actions:['view','delete']
+        },
+        {
+            title:'Test',
+            date: new Date().toLocaleString(),
+            actions:['view','delete']
+    
+        },
+        {
+            title:'Test',
+            date: new Date().toLocaleString(),
+            actions:['view','delete']
+    
+        }
+    ]
+    const closedRequests=[
+        {
+            title:'Test',
+            date: new Date().toLocaleString(),
+            actions:['view']
+        },
+        {
+            title:'Test',
+            date: new Date().toLocaleString(),
+            actions:['view']
+        },
+        {
+            title:'Test',
+            date: new Date().toLocaleString(),
+            actions:['view']
+        },
+        {
+            title:'Test',
+            date: new Date().toLocaleString(),
+            actions:['view']
+        }
+    ]
+       
     const handleSubmit = event => {
         //TODO:handle submit call API
         event.preventDefault();
     };
+    const deleteRequest=(requestIndex,requestsType)=>{
+        switch(requestsType)
+        {
+            case 'open':
+                openedRequests.splice(requestIndex,1);
+                case 'closed':
+                    closedRequests.splice(requestIndex,1);
+                    case 'saved':
+                        savedRequests.splice(requestIndex,1);
+
+        }
+    }
     const steps = [
         {
             step: 1,
@@ -111,7 +177,8 @@ function EmployeeServices() {
     ]
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-        <Summary/>
+           <Summary opened={openedRequests} closed={closedRequests} saved={savedRequests} deleteRequest={deleteRequest}/>
+        
 
          <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
          <Button

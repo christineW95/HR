@@ -12,7 +12,7 @@ import TextInput from '../../components/TextInput';
 import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
-function Request() {
+function TrainingRequest() {
 
     const [courseName, setcourseName] = React.useState('');
     const [courseLocation, setcourseLocation] = React.useState('');
@@ -167,4 +167,4 @@ function Request() {
     );
 }
 
-export default Request;
+export default TrainingRequest;

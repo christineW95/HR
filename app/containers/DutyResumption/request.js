@@ -33,96 +33,38 @@ function Request() {
     const steps = [
         {
             step: 1,
-            label:'Training Details',
+            label:'Select Dates',
             completed: false,
             valid:false,
             icon:<DetailsSharp/>,
             content: <>
-              <label style={{ padding: 7 }}>
-                    Request Date:
-                    <label style={{ padding: 50 }}>
-                        {requestDate}
-
-                    </label>
-                </label>
-                <TextInput
-                    label="Course Name"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="coursename"
-                    value={courseName}
-                     />
-
-                <TextInput
-                    label="Course Location"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="courseLocation"
-                    value={courseLocation}
-                     />
-
-                <TextInput
-                    label="Class Name"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="className"
-                    value={className}
-                      />
-
-              
-                <EmptyTextarea
-                    label='Course Details'
-                    name="courseDetails"
-                    value={courseDetails}
-                />
+             <MaterialUIPickers
+              label={"Actual Date:"}
+              selected={actualdate}
+                
+            />
+            <TextInput
+              label="Unplanned days"
+              style={{ display: "flex", width: 300, margin: 10 }}
+              name="unplanneddays"
+              type={"number"}
+              value={unplanneddays}
+                
+            />
+    
+            <TextInput
+              label="Unplanned Adj days"
+              style={{ display: "flex", width: 300, margin: 10 }}
+              name="unplannedadjdays"
+              type={'number'}
+              value={unplannedadjdays}
+                
+            />
             </>
         },
+      
         {
             step: 2,
-            label:'Select Dates',
-            completed: false,
-            valid: false,
-            icon:<CalendarToday/>,
-            content: <><MaterialUIPickers label={"Begin Date:"} selected={beginDate} 
-             />
-                <MaterialUIPickers label={"End Date:"} selected={endDate}   />
-
-
-                <label style={{ padding: 7 }}>
-                    Duration:
-                    <label style={{ padding: 80 }}>
-                        {duration}
-                    </label>
-                </label>
-            </>
-
-        },
-        {
-            step: 3,
-            label:"Cost",
-            icon:<MonetizationOnSharp/>,
-            completed: false,
-            valid: false,
-            content: <>  <TextInput
-                label="Cost"
-                style={{
-                    display: 'flex', width: 300, margin: 10,
-                    backgroundColor: 'white',
-                }}
-                name="cost"
-                type={'number'}
-                value={cost}
-                  />
-
-
-                <TextInput
-                    label="Training Provider:"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="trainingProvider"
-                    value={trainingProvider}
-                      />
-
-            </>
-        },
-        {
-            step: 4,
             label:"Additional Details",
             completed: false,
             icon:<CreateSharp/>,
