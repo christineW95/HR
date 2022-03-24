@@ -218,7 +218,7 @@ export default function HorizontalLinearStepper(props) {
       {isSaved ? (
           <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
             <Typography className={classes.instructions}>All steps saved</Typography>
-          </div> : null
+          </div>) : null
       }
     </div>
   );

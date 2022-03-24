@@ -26,7 +26,57 @@ function TrainingRequest() {
     const [trainingProvider, settrainingProvider] = React.useState('');
     const [remarks, setremarks] = React.useState('');
     const [show, setShow] = useState(false)
-
+const openedRequests=[
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view']
+    }
+]
+const savedRequests=[
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view','delete']
+    },
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view']
+    }
+]
+const closedRequests=[
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view']
+    },
+    {
+        title:'Test',
+        date: new Date(),
+        actions:['view']
+    }
+]
    
     const handleSubmit = event => {
         //TODO:handle submit call API
@@ -158,7 +208,7 @@ function TrainingRequest() {
     ]
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-           <Summary/>
+           <Summary opened={openedRequests} closed={closedRequests} saved={savedRequests}/>
 
             <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
             <Button

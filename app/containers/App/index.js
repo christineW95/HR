@@ -27,6 +27,7 @@ import Payslip from '../Payslip';
 import LeaveBalance from '../LeaveBalance';
 import DutyResumption from '../DutyResumption';
 import CancelLeaveRequest from '../CancelLeaveRequest';
+import Requests from '../TrainingRequest/requests';
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -51,6 +52,7 @@ export default function App() {
         <Route path="/leavebalance" component={LeaveBalance} />
         <Route path="/dutyresumption" component={DutyResumption} />
         <Route path="/cancelleaverequest" component={CancelLeaveRequest} />
+        <Route path="/requests" component={Requests} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

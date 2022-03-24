@@ -11,7 +11,9 @@ import PageHeader from '../PageHeader';
 import EmptyTextarea from '../TextArea';
 import TextInput from '../TextInput';
 import CustomizedSteppers from '../Stepper';
+import SimpleModal from '../Modal/requestsModal';
 function Summary(props) {
+  const {opened,saved,closed}=props
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
@@ -37,7 +39,15 @@ function Summary(props) {
     },
   }));
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [currentRequests,setCurrentRequests]=useState([])
   return (
     <div className={classes.root}>
       <Grid
@@ -46,6 +56,10 @@ function Summary(props) {
         style={{ alignItems: 'center', justifyContent: 'space-around' }}
       >
         <Grid xs={12} sm={4}>
+          <Button onClick={()=>{
+            setCurrentRequests(saved)
+            handleOpen()}}>
+
           <Paper className={classes.paper}>
             <Assignment
               color="secondary"
@@ -65,8 +79,13 @@ function Summary(props) {
                 Saved Requests
             </Link>
           </Paper>
+          </Button>
+
         </Grid>
         <Grid xs={12} sm={4}>
+        <Button onClick={()=>{
+            setCurrentRequests(closed)
+            handleOpen()}}>
           <Paper className={classes.paper}>
             <AssignmentTurnedInIcon
               color="secondary"
@@ -86,8 +105,12 @@ function Summary(props) {
                 Completed Requests
             </Link>
           </Paper>
+          </Button>
         </Grid>
         <Grid xs={12} sm={4}>
+        <Button onClick={()=>{
+            setCurrentRequests(opened)
+            handleOpen()}}>
           <Paper className={classes.paper}>
             <AssignmentLateSharp
               color="secondary"
@@ -108,8 +131,11 @@ function Summary(props) {
                Opened Requests
             </Link>
           </Paper>
+          </Button>
         </Grid>
       </Grid>
+      <SimpleModal open={open} handleClose={handleClose} requests={currentRequests}/>         
+
     </div>
   );
 }
