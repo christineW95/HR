@@ -5,95 +5,20 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 
 import StepConnector from '@material-ui/core/StepConnector';
-
 import Button from '@material-ui/core/Button';
-import SettingsIcon from '@material-ui/icons/Settings';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
-import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import Typography from '@material-ui/core/Typography';
-import { CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
-const QontoConnector = withStyles({
-  alternativeLabel: {
-    top: 10,
-    left: 'calc(-50% + 16px)',
-    right: 'calc(50% + 16px)',
-  },
-  active: {
-    '& $line': {
-      borderColor: '#784af4',
-    },
-  },
-  completed: {
-    '& $line': {
-      borderColor: '#784af4',
-    },
-  },
-  line: {
-    borderColor: '#eaeaf0',
-    borderTopWidth: 3,
-    borderRadius: 1,
-  },
-})(StepConnector);
-
-const useQontoStepIconStyles = makeStyles({
-  root: {
-    color: '#eaeaf0',
-    display: 'flex',
-    height: 22,
-    alignItems: 'center',
-  },
-  active: {
-    color: '#784af4',
-  },
-  circle: {
-    width: 8,
-    height: 8,
-    borderRadius: '50%',
-    backgroundColor: 'currentColor',
-  },
-  completed: {
-    color: '#784af4',
-    zIndex: 1,
-    fontSize: 18,
-  },
-});
-
-function QontoStepIcon(props) {
-  const classes = useQontoStepIconStyles();
-  const { active, completed } = props;
-
-  return (
-    <div
-      className={clsx(classes.root, {
-        [classes.active]: active,
-      })}
-    >
-      {completed ? <Check className={classes.completed} /> : <div className={classes.circle} />}
-    </div>
-  );
-}
-
-QontoStepIcon.propTypes = {
-  /**
-   * Whether this step is active.
-   */
-  active: PropTypes.bool,
-  /**
-   * Mark the step as completed. Is passed to child components.
-   */
-  completed: PropTypes.bool,
-};
-
 const ColorlibConnector = withStyles({
   alternativeLabel: {
     top: 22,
   },
+
   active: {
     '& $line': {
       backgroundImage:
-        'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
+      'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     },
   },
   completed: {
@@ -106,9 +31,28 @@ const ColorlibConnector = withStyles({
     height: 3,
     border: 0,
     backgroundColor: '#eaeaf0',
-    borderRadius: 1,
+    borderRadius: 1,        
   },
 })(StepConnector);
+
+
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  button: {
+    marginRight: theme.spacing(1),
+  },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+}));
+
+
 const useColorlibStepIconStyles = makeStyles({
   root: {
     backgroundColor: '#ccc',
@@ -131,17 +75,9 @@ const useColorlibStepIconStyles = makeStyles({
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
   },
 });
-
 function ColorlibStepIcon(props) {
   const classes = useColorlibStepIconStyles();
-  const { active, completed } = props;
-
-  const icons = {
-    1: <DetailsSharp />,
-    2: <CalendarToday />,
-    3: <MonetizationOnSharp />,
-    4: <CreateSharp />,
-  };
+  const { active, completed,icon } = props;
 
   return (
     <div
@@ -150,7 +86,7 @@ function ColorlibStepIcon(props) {
         [classes.completed]: completed,
       })}
     >
-      {icons[String(props.icon)]}
+      {icon}
     </div>
   );
 }
@@ -170,30 +106,12 @@ ColorlibStepIcon.propTypes = {
   icon: PropTypes.node,
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-  },
-  backButton: {
-    marginRight: theme.spacing(1),
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    color:'green',
-    margin:20,
-    marginBottom: theme.spacing(1),
-  },
-}));
-
-
-
-
-export default function HorizontalLabelPositionBelowStepper(props) {
+export default function HorizontalLinearStepper(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
   const [isSaved, setIsSaved] = React.useState(false);
   const {steps}=props
-
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
@@ -208,49 +126,78 @@ export default function HorizontalLabelPositionBelowStepper(props) {
         return 'Unknown stepIndex';
     }
   }
+  const isStepOptional = (step) => {
+    return step === 1;
+  };
+
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
+
   const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+
   const handleReset = () => {
     setActiveStep(0);
   };
-const handleSave=()=>{
-setIsSaved(true)
-}
+  const handleSave=()=>{
+    setIsSaved(true)
+    }
   return (
     <div className={classes.root}>
-      <Stepper activeStep={activeStep} alternativeLabel connector={<ColorlibConnector />}>
-        {steps.map((step) => (
-          <Step key={step.label}>
-            <StepLabel  StepIconComponent={ColorlibStepIcon}>{step.label}</StepLabel>
-          </Step>
-        ))}
+      <Stepper activeStep={activeStep} connector={<ColorlibConnector />}>
+        {steps.map((step, index) => {
+          const stepProps = {};
+          const labelProps = {};
+          if (isStepOptional(index)) {
+            labelProps.optional = <Typography variant="caption">Optional</Typography>;
+          }
+         
+          return (
+            <Step key={step.label} {...stepProps}>
+              <StepLabel StepIconProps={step} StepIconComponent={ColorlibStepIcon} {...labelProps}>{step.label}</StepLabel>
+            </Step>
+          );
+        })}
       </Stepper>
       <div>
-       
         {activeStep === steps.length ? (
-          <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
-            <Typography className={classes.instructions}>All steps completed</Typography>
-            <Button onClick={handleReset} style={{backgroundColor:'lightgray'}}>Reset</Button>
+          <div>
+            <Typography className={classes.instructions}>
+              All steps completed - you&apos;re finished
+            </Typography>
+            <Button onClick={handleReset} className={classes.button}>
+              Reset
+            </Button>
           </div>
         ) : (
-          <div >
-            <Typography style={{display:'flex',flexDirection:'column',flex:1,justifyContent:'flex-start',margin:100}}>{getStepContent(activeStep)}</Typography>
-            <div style={{alignItems:'center',display:'flex',flex:1 , justifyContent:'space-around'}}>
-              <Button
-              style={{backgroundColor:'lightgray'}}
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.backButton}
-              >
+          <div>
+            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <div>
+              <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
               </Button>
-              <Button variant="contained" color="primary" onClick={handleNext}>
+              
+
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleNext}
+                className={classes.button}
+              >
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>
               <Button variant="contained" color="primary" onClick={handleSave}>

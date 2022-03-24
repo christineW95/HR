@@ -7,7 +7,7 @@ import MultipleSelect from "../../components/select";
 import EmptyTextarea from "../../components/TextArea";
 import TextInput from "../../components/TextInput";
 import { Link } from "react-router-dom";
-import { Add, ArrowUpward, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, KeyboardArrowUpSharp, MonetizationOnSharp } from '@material-ui/icons';
+import { Add, ArrowUpward, AssignmentIndSharp, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, KeyboardArrowUpSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 import { Button } from '@material-ui/core';
@@ -112,7 +112,7 @@ function LeaveRequest() {
     {
         step: 3,
         label:"Leave Information",
-        icon:<MonetizationOnSharp/>,
+        icon:<AssignmentIndSharp/>,
         completed: false,
         valid: false,
         content: <> 

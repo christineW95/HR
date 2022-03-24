@@ -6,7 +6,7 @@ import MultipleSelect from '../../components/select';
 import UnstyledSelectSimple from '../../components/select';
 import EmptyTextarea from '../../components/TextArea';
 import TextInput from '../../components/TextInput';
-import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
+import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp, PersonAddSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 import PageHeader from '../../components/PageHeader';
@@ -74,7 +74,7 @@ function EmployeeServices() {
             label:'To Whom',
             completed: false,
             valid: false,
-            icon:<CalendarToday/>,
+            icon:<PersonAddSharp/>,
             content: <> <TextInput
             label="To"
             style={{ display: 'flex', width: 300, margin: 10 }}
