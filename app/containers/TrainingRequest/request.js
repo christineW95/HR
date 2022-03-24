@@ -27,64 +27,9 @@ function TrainingRequest() {
     const [remarks, setremarks] = React.useState('');
     const [show, setShow] = useState(false)
 
-const openedRequests=[
-    {
-        title:'Test',
-        date:new Date().toLocaleString(),
-        actions:['view']
-    },
-    {
-        title:'Test',
-        date: new Date().toLocaleString(),
-        actions:['view']
-    }
-]
-const savedRequests=[
-    {
-        title:'Test',
-        date: new Date().toLocaleString(),
-        actions:['view','delete']
-    },
-    {
-        title:'Test',
-        date: new Date().toLocaleString(),
-        actions:['view','delete']
 
-    },
-    {
-        title:'Test',
-        date: new Date().toLocaleString(),
-        actions:['view','delete']
-
-    }
-]
-const closedRequests=[
-    {
-        title:'Test',
-        date: new Date().toLocaleString(),
-        actions:['view']
-    },
-    {
-        title:'Test',
-        date: new Date().toLocaleString(),
-        actions:['view']
-    },
-    {
-        title:'Test',
-        date: new Date().toLocaleString(),
-        actions:['view']
-    },
-    {
-        title:'Test',
-        date: new Date().toLocaleString(),
-        actions:['view']
-    }
-]
    
-    const handleSubmit = event => {
-        //TODO:handle submit call API
-        event.preventDefault();
-    };
+    
     const steps = [
         {
             step: 1,
@@ -105,31 +50,27 @@ const closedRequests=[
                     style={{ display: 'flex', width: 300, margin: 10 }}
                     name="coursename"
                     value={courseName}
-                    onChange={e => setcourseName(e.target.value)}
-                    required />
+                     />
 
                 <TextInput
                     label="Course Location"
                     style={{ display: 'flex', width: 300, margin: 10 }}
                     name="courseLocation"
                     value={courseLocation}
-                    onChange={e => setcourseLocation(e.target.value)}
-                    required />
+                     />
 
                 <TextInput
                     label="Class Name"
                     style={{ display: 'flex', width: 300, margin: 10 }}
                     name="className"
                     value={className}
-                    onChange={e => setclassName(e.target.value)}
-                    required />
+                      />
 
               
                 <EmptyTextarea
                     label='Course Details'
                     name="courseDetails"
                     value={courseDetails}
-                    onChange={e => setcourseDetails(e.target.value)}
                 />
             </>
         },
@@ -139,21 +80,9 @@ const closedRequests=[
             completed: false,
             valid: false,
             icon:<CalendarToday/>,
-            content: <><MaterialUIPickers label={"Begin Date:"} selected={beginDate} onSelect={(date) => setbeginDate(date)} startDate={new Date()} required />
-                <MaterialUIPickers label={"End Date:"} selected={endDate} required onSelect={(date) => {
-                    setendDate(date)
-                    if (beginDate) {
-                        var Difference_In_Time = date.getTime() - beginDate.getTime();
-
-                        // To calculate the no. of days between two dates
-                        var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-                        if (Difference_In_Days > 0)
-                            setduration(Difference_In_Days)
-                        else
-                            alert("End date must be after Begin Date")
-                    }
-                }
-                } />
+            content: <><MaterialUIPickers label={"Begin Date:"} selected={beginDate} 
+             />
+                <MaterialUIPickers label={"End Date:"} selected={endDate}   />
 
 
                 <label style={{ padding: 7 }}>
@@ -180,8 +109,7 @@ const closedRequests=[
                 name="cost"
                 type={'number'}
                 value={cost}
-                onChange={e => setCost(e.target.value)}
-                required />
+                  />
 
 
                 <TextInput
@@ -189,8 +117,7 @@ const closedRequests=[
                     style={{ display: 'flex', width: 300, margin: 10 }}
                     name="trainingProvider"
                     value={trainingProvider}
-                    onChange={e => settrainingProvider(e.target.value)}
-                    required />
+                      />
 
             </>
         },
@@ -204,7 +131,6 @@ const closedRequests=[
                 label='Remarks:'
                 name="remarks"
                 value={remarks}
-                onChange={e => setremarks(e.target.value)}
             />
             </>
         }
@@ -223,28 +149,18 @@ const closedRequests=[
     }
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-           <Summary opened={openedRequests} closed={closedRequests} saved={savedRequests} deleteRequest={deleteRequest}/>
 
-            <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
-            <Button
-                onClick={() => setShow(true)}
-                variant="contained"
-                color='primary' >
-                <Add />
-                Submit New</Button>
-            </div>
            
-           {
-               show ? ( <form onSubmit={handleSubmit} style={{
+           
+          <form  style={{
                 display: 'flex',
                 flex: 1,
                 flexDirection: 'column',
                 justifyContent: 'space-between',
             }}>
                 <PageHeader />
-                <CustomizedSteppers steps={steps} />
-            </form>):null
-           }
+                <CustomizedSteppers steps={steps} viewOnly={true}/>
+            </form>
            
            
         </div>

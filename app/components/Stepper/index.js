@@ -111,7 +111,7 @@ export default function HorizontalLinearStepper(props) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const [isSaved, setIsSaved] = React.useState(false);
-  const { steps } = props;
+  const { steps,viewOnly } = props;
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
@@ -176,12 +176,16 @@ export default function HorizontalLinearStepper(props) {
           );
         })}
       </Stepper>
-      <div>
+      <div style={{display:'flex',alignItems:'center'}}>
         {activeStep === steps.length ? (
           <div>
-            <Typography className={classes.instructions}>
+            {
+              !viewOnly ?  <Typography className={classes.instructions}>
               All steps completed - you&apos;re finished
             </Typography>
+              : null
+            }
+           
             <Button onClick={handleReset} className={classes.button}>
               Reset
             </Button>
@@ -200,17 +204,31 @@ export default function HorizontalLinearStepper(props) {
                 Back
               </Button>
 
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
-              <Button variant="contained" color="primary" onClick={handleSave}>
-                Save
-              </Button>
+{
+  !viewOnly ? 
+    <>
+    <Button
+    variant="contained"
+    color="primary"
+    onClick={handleNext}
+    className={classes.button}
+  >
+    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+  </Button>
+  <Button variant="contained" color="primary" onClick={handleSave}>
+    Save
+  </Button>
+  </>
+  : <Button
+  variant="contained"
+  color="primary"
+  onClick={handleNext}
+  className={classes.button}
+>
+  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+</Button>
+}
+             
             </div>
           </div>
         )}

@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
-  const { open,handleClose,requests}=props;
+  const { open,handleClose,requests,deleteRequest}=props;
 
 
   const body = (
     <div style={{borderRadius:1}} >
      
-      <Requests requests={requests}/>
+      <Requests requests={requests} deleteRequest={deleteRequest}/>
       <SimpleModal />
     </div>
   );

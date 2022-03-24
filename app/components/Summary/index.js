@@ -13,7 +13,7 @@ import TextInput from '../TextInput';
 import CustomizedSteppers from '../Stepper';
 import SimpleModal from '../Modal/requestsModal';
 function Summary(props) {
-  const {opened,saved,closed}=props
+  const {opened,saved,closed,deleteRequest}=props
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
@@ -29,8 +29,7 @@ function Summary(props) {
       boxShadow: '2px 4px 2px 2px #9E9E9E',
       flexDirection: 'column',
       display: 'flex',
-      margin: 10,
-      //   padding: 20,
+      margin: 20,
       justifyContent: 'center',
       // borderRadius: 200,
       alignItems: 'center',
@@ -65,11 +64,12 @@ function Summary(props) {
               color="secondary"
               style={{ fontSize: 60, marginBlock: 20 }}
             />
-            <Link
+            <h3
               to="page.path"
               style={{
                 whiteSpace: 'nowrap',
                 textAlign: 'justify',
+                paddingInline:50,
                 color: 'primary',
                 fontWeight: 'bold',
                 fontSize: 18,
@@ -77,7 +77,7 @@ function Summary(props) {
               }}
             >
                 Saved Requests
-            </Link>
+            </h3>
           </Paper>
           </Button>
 
@@ -91,19 +91,22 @@ function Summary(props) {
               color="secondary"
               style={{ fontSize: 60, marginBlock: 20 }}
             />
-            <Link
-              to="page.path"
+            <h3
               style={{
                 whiteSpace: 'nowrap',
                 textAlign: 'justify',
                 color: 'primary',
                 fontWeight: 'bold',
                 fontSize: 18,
+                paddingInline:50,
+
+                
+
                 textDecoration: 'none',
               }}
             >
                 Completed Requests
-            </Link>
+            </h3>
           </Paper>
           </Button>
         </Grid>
@@ -117,10 +120,10 @@ function Summary(props) {
               style={{ fontSize: 60, marginBlock: 20 }}
             />
 
-            <Link
-              to="page.path"
+            <h3
               style={{
                 whiteSpace: 'nowrap',
+                padding:5,
                 textAlign: 'justify',
                 color: 'primary',
                 fontWeight: 'bold',
@@ -129,12 +132,12 @@ function Summary(props) {
               }}
             >
                Opened Requests
-            </Link>
+            </h3>
           </Paper>
           </Button>
         </Grid>
       </Grid>
-      <SimpleModal open={open} handleClose={handleClose} requests={currentRequests}/>         
+      <SimpleModal open={open} handleClose={handleClose} requests={currentRequests} deleteRequest={deleteRequest}/>         
 
     </div>
   );

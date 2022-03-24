@@ -9,14 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CalendarToday from '@material-ui/icons/CalendarToday';
+import { Assignment, PanoramaFishEye, VisibilitySharp } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
-function generate(element,requests) {
-  return requests.map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
 
 const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -25,28 +20,49 @@ const Demo = styled('div')(({ theme }) => ({
 export default function CustomList(props) {
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
-const {requests}=props
+  const actionIcons=[
+    <VisibilitySharp color='secondary'/>,
+    <DeleteIcon color='secondary'/>
+  ]
+const {requests,deleteRequest}=props
   return (
           <Demo>
           <List dense={dense} style={{borderRadius:15}}>
-              {generate(
+              {
+              
+              requests.map((item,index)=>{
+                return(
+
                 <ListItem style={{borderRadius:15}}>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <CalendarToday />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
+                <ListItemAvatar>
+                  <Avatar style={{backgroundColor:'red'}}>
+                    <Assignment />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={item.title || ""}
+                  secondary={item.date.toString()}
+                />
                   <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>,requests
-              )}
+
+                {
+                  item.actions.map((action,index)=>
+                 {
+                  if(action == 'view' )
+                  return <Link to={'/request'} >
+                  <IconButton > {actionIcons[0]}</IconButton>
+                  </Link>
+                  else
+                  return <IconButton onClick={deleteRequest}> {actionIcons[1]}</IconButton>
+
+                  }
+                  )
+                }                </ListItemSecondaryAction>
+
+              </ListItem>
+              )})
+              
+             }
             </List>
           </Demo>
   );
