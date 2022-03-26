@@ -10,6 +10,8 @@ import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, Mon
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 import PageHeader from '../../components/PageHeader';
+import SimpleModal from '../../components/Modal/requestsModal';
+
 function EmployeeServices() {
     const [type, setType] = useState('')
     const [language, setLanguage] = useState('')
@@ -18,7 +20,8 @@ function EmployeeServices() {
     const [to, setTo] = React.useState(null);
     const [remarks, setremarks] = React.useState('');
     const [show, setShow] = useState(false)
-
+    const [showRequestsModal, setShowRequestsModal] = useState(false)
+    const [currentIndex, setCurrentIndex] = useState(null)
 
     const openedRequests=[
         {
@@ -73,7 +76,8 @@ function EmployeeServices() {
             actions:['view']
         }
     ]
-       
+    const requests=[{'saved':savedRequests},{'closed':closedRequests},{'open':openedRequests}]
+    const [allRequests,setAllRequests]=useState(requests)
     const handleSubmit = event => {
         //TODO:handle submit call API
         event.preventDefault();
@@ -177,9 +181,10 @@ function EmployeeServices() {
     ]
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-           <Summary opened={openedRequests} closed={closedRequests} saved={savedRequests} deleteRequest={deleteRequest}/>
-        
-
+           <Summary onPress={(index)=>
+           {setCurrentIndex(index)
+           setShowRequestsModal(true)}
+        }/>
          <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
          <Button
              onClick={() => setShow(true)}
@@ -202,6 +207,7 @@ function EmployeeServices() {
          </form>
         ):null
         }
+           <SimpleModal open={showRequestsModal}  requests={requests[currentIndex]} path={'/employeeservicesrequest'} deleteRequest={deleteRequest}/>
         
         
      </div>

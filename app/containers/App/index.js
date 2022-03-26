@@ -28,6 +28,10 @@ import LeaveBalance from '../LeaveBalance';
 import DutyResumption from '../DutyResumption';
 import CancelLeaveRequest from '../CancelLeaveRequest';
 import Request from '../TrainingRequest/request';
+import LeaveEnchashmentRequest from '../LeaveEncashment/request';
+import DutyResumptionRequest from '../DutyResumption/request';
+import EmployeeServicesRequest from '../EmployeeServices/request';
+import ViewLeaveRequest from '../LeaveRequest/request';
 
 
 const AppWrapper = styled.div`
@@ -54,6 +58,11 @@ export default function App() {
         <Route path="/dutyresumption" component={DutyResumption} />
         <Route path="/cancelleaverequest" component={CancelLeaveRequest} />
         <Route path="/request" component={Request} />
+        <Route path="/leaveencashmentrequest" component={LeaveEnchashmentRequest} />
+        <Route path="/dutyresumptionrequest" component={DutyResumptionRequest} />
+        <Route path="/employeeservicesrequest" component={EmployeeServicesRequest} />
+        <Route path="/viewleaverequest" component={ViewLeaveRequest} />
+       
         <Route path="" component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -9,6 +9,7 @@ import EmptyTextarea from '../../components/TextArea';
 import TextInput from '../../components/TextInput';
 import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
+import SimpleModal from '../../components/Modal/requestsModal';
 
 function LeaveEncashment() {
     //TODO:retrieve from API
@@ -20,6 +21,8 @@ function LeaveEncashment() {
     const [numberOfDays, setnumberOfDays] = React.useState(null);
     const [remarks, setremarks] = React.useState('');
     const [show, setShow] = useState(false)
+    const [showRequestsModal, setShowRequestsModal] = useState(false)
+    const [currentIndex, setCurrentIndex] = useState(null)
     const openedRequests=[
         {
             title:'Test',
@@ -73,7 +76,8 @@ function LeaveEncashment() {
             actions:['view']
         }
     ]
-
+    const requests=[{'saved':savedRequests},{'closed':closedRequests},{'open':openedRequests}]
+    const [allRequests,setAllRequests]=useState(requests)
     const handleSubmit = event => {
         //TODO:handle submit call API
         event.preventDefault();
@@ -163,8 +167,10 @@ function LeaveEncashment() {
     }
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-                    <Summary opened={openedRequests} closed={closedRequests} saved={savedRequests} deleteRequest={deleteRequest}/>
-
+                  <Summary onPress={(index)=>
+           {setCurrentIndex(index)
+           setShowRequestsModal(true)}
+        }/>
 
             <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
             <Button
@@ -187,6 +193,7 @@ function LeaveEncashment() {
             </form>):null
            }
            
+           <SimpleModal open={showRequestsModal}  requests={requests[currentIndex]} path={'/leaveencashmentrequest'} deleteRequest={deleteRequest}/>
            
         </div>
     );

@@ -9,13 +9,16 @@ import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 import { Button } from "@material-ui/core";
 import PageHeader from "../../components/PageHeader";
-function DutyResumption() {
+import SimpleModal from '../../components/Modal/requestsModal';
+
+export default function DutyResumption() {
   const [actualdate, setactualdate] = useState(null);
   const [unplanneddays, setunplanneddays] = useState(null);
   const [unplannedadjdays, setunplannedadjdays] = useState(null);
   const [remarks, setremarks] = useState(null);
   const [show, setShow] = useState(false)
-
+  const [showRequestsModal, setShowRequestsModal] = useState(false)
+    const [currentIndex, setCurrentIndex] = useState(null)
   const handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -124,11 +127,27 @@ const closedRequests=[
       actions:['view']
   }
 ]
+const requests=[{'saved':savedRequests},{'closed':closedRequests},{'open':openedRequests}]
+const [allRequests,setAllRequests]=useState(requests)
 let listOfLeaves=[];
+const deleteRequest=(requestIndex,requestsType)=>{
+  switch(requestsType)
+  {
+      case 'open':
+          openedRequests.splice(requestIndex,1);
+          case 'closed':
+              closedRequests.splice(requestIndex,1);
+              case 'saved':
+                  savedRequests.splice(requestIndex,1);
+
+  }
+}
   return (
     <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-             <Summary opened={openedRequests} closed={closedRequests} saved={savedRequests} deleteRequest={deleteRequest}/>
-
+             <Summary onPress={(index)=>
+           {setCurrentIndex(index)
+           setShowRequestsModal(true)}
+        }/>
 
 <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
 <Button
@@ -149,6 +168,7 @@ let listOfLeaves=[];
                 <CustomizedSteppers steps={steps} />
             </form>):null
            }
+           <SimpleModal open={showRequestsModal}  requests={requests[currentIndex]} path={'/dutyresumptionrequest'} deleteRequest={deleteRequest}/>
 
       
   
@@ -156,4 +176,3 @@ let listOfLeaves=[];
   );
 }
 
-export default DutyResumption;

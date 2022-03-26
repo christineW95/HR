@@ -12,20 +12,11 @@ import TextInput from '../../components/TextInput';
 import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
-function Request() {
-
-    const [courseName, setcourseName] = React.useState('');
-    const [courseLocation, setcourseLocation] = React.useState('');
-    const [className, setclassName] = React.useState('');
-    const [requestDate, setrequestDate] = React.useState(new Date().toLocaleDateString());
-    const [courseDetails, setcourseDetails] = React.useState('');
-    const [cost, setCost] = React.useState('');
-    const [beginDate, setbeginDate] = React.useState(new Date());
-    const [endDate, setendDate] = React.useState(null);
-    const [duration, setduration] = React.useState(0);
-    const [trainingProvider, settrainingProvider] = React.useState('');
-    const [remarks, setremarks] = React.useState('');
-    const [show, setShow] = useState(false)
+export default function DutyResumptionRequest() {
+    const [actualdate, setactualdate] = useState(null);
+    const [unplanneddays, setunplanneddays] = useState(null);
+    const [unplannedadjdays, setunplannedadjdays] = useState(null);
+    const [remarks, setremarks] = useState(null);
 
 
    
@@ -41,7 +32,6 @@ function Request() {
              <MaterialUIPickers
               label={"Actual Date:"}
               selected={actualdate}
-                
             />
             <TextInput
               label="Unplanned days"
@@ -49,7 +39,6 @@ function Request() {
               name="unplanneddays"
               type={"number"}
               value={unplanneddays}
-                
             />
     
             <TextInput
@@ -58,7 +47,6 @@ function Request() {
               name="unplannedadjdays"
               type={'number'}
               value={unplannedadjdays}
-                
             />
             </>
         },
@@ -77,18 +65,7 @@ function Request() {
             </>
         }
     ]
-    const deleteRequest=(requestIndex,requestsType)=>{
-        switch(requestsType)
-        {
-            case 'open':
-                openedRequests.splice(requestIndex,1);
-                case 'closed':
-                    closedRequests.splice(requestIndex,1);
-                    case 'saved':
-                        savedRequests.splice(requestIndex,1);
-
-        }
-    }
+   
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
 
@@ -109,4 +86,3 @@ function Request() {
     );
 }
 
-export default Request;

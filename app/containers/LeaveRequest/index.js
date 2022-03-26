@@ -13,7 +13,7 @@ import Summary from '../../components/Summary';
 import { Button } from '@material-ui/core';
 import PageHeader from '../../components/PageHeader';
 import Fab from '@material-ui/core/Fab';
-import SimpleModal from '../../components/Modal';
+import SimpleModal from '../../components/Modal/requestsModal';
 
 function LeaveRequest() {
   const [country, setCountry] = React.useState("");
@@ -29,6 +29,8 @@ function LeaveRequest() {
   const [phone, setphone] = React.useState(null);
   const [show, setShow] = useState(false)
   const [open, setOpen] = React.useState(false);
+  const [showRequestsModal, setShowRequestsModal] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(null)
   const openedRequests=[
     {
         title:'Test',
@@ -82,18 +84,20 @@ const closedRequests=[
         actions:['view']
     }
 ]
-const deleteRequest=(requestIndex,requestsType)=>{
-  switch(requestsType)
-  {
-      case 'open':
-          openedRequests.splice(requestIndex,1);
-          case 'closed':
-              closedRequests.splice(requestIndex,1);
-              case 'saved':
-                  savedRequests.splice(requestIndex,1);
+const requests=[{'saved':savedRequests},{'closed':closedRequests},{'open':openedRequests}]
+    const [allRequests,setAllRequests]=useState(requests)
+    const deleteRequest=(requestIndex,requestsType)=>{
+      switch(requestsType)
+      {
+          case 'open':
+              openedRequests.splice(requestIndex,1);
+              case 'closed':
+                  closedRequests.splice(requestIndex,1);
+                  case 'saved':
+                      savedRequests.splice(requestIndex,1);
 
+      }
   }
-}
   const handleOpen = () => {
     setOpen(true);
   };
@@ -239,7 +243,10 @@ const deleteRequest=(requestIndex,requestsType)=>{
   return (
     <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
 
-<Summary/>
+<Summary onPress={(index)=>
+           {setCurrentIndex(index)
+           setShowRequestsModal(true)}
+        }/>
 
 <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
 <Button
@@ -265,7 +272,8 @@ const deleteRequest=(requestIndex,requestsType)=>{
            <Fab color={'secondary'} style={{float:'right'}} onClick={handleOpen}>
            <KeyboardArrowUpSharp/>
           </Fab>
-           <SimpleModal open={open} handleClose={handleClose}/>           </div>
+          <SimpleModal open={showRequestsModal}  requests={requests[currentIndex]} path={'/viewleaverequest'} deleteRequest={deleteRequest}/>
+          </div>
            
     </div>
   );

@@ -12,20 +12,16 @@ import TextInput from '../../components/TextInput';
 import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
+import MultipleSelect from '../../components/select';
 function LeaveEnchashmentRequest() {
 
-    const [courseName, setcourseName] = React.useState('');
-    const [courseLocation, setcourseLocation] = React.useState('');
-    const [className, setclassName] = React.useState('');
-    const [requestDate, setrequestDate] = React.useState(new Date().toLocaleDateString());
-    const [courseDetails, setcourseDetails] = React.useState('');
-    const [cost, setCost] = React.useState('');
-    const [beginDate, setbeginDate] = React.useState(new Date());
-    const [endDate, setendDate] = React.useState(null);
-    const [duration, setduration] = React.useState(0);
-    const [trainingProvider, settrainingProvider] = React.useState('');
+    let leaveBalance = 25;
+    let leaveEncashed = 0;
+    let requestDate = new Date().toLocaleDateString();
+    let options = []
+    const [typeOfLeave, settypeOfLeave] = React.useState('');
+    const [numberOfDays, setnumberOfDays] = React.useState(null);
     const [remarks, setremarks] = React.useState('');
-    const [show, setShow] = useState(false)
 
 
    
@@ -97,18 +93,7 @@ function LeaveEnchashmentRequest() {
             </>
         }
     ]
-    const deleteRequest=(requestIndex,requestsType)=>{
-        switch(requestsType)
-        {
-            case 'open':
-                openedRequests.splice(requestIndex,1);
-                case 'closed':
-                    closedRequests.splice(requestIndex,1);
-                    case 'saved':
-                        savedRequests.splice(requestIndex,1);
-
-        }
-    }
+  
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
 
