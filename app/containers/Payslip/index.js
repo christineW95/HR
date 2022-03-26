@@ -5,22 +5,98 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import OutlinedCard from '../../components/Card';
 import MaterialUIPickers from '../../components/Datepicker';
+import CustomizedSteppers from '../../components/Stepper';
+import SimpleModal from '../../components/Modal/requestsModal';
+import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
+import Summary from '../../components/Summary';
+import PageHeader from '../../components/PageHeader';
+import EmptyTextarea from '../../components/TextArea';
+
 function Payslip() {
   const [actualdate, setactualdate] = useState(null);
   const [show, setShow] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [showRequestsModal, setShowRequestsModal] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(null)
+  const [remarks, setremarks] = React.useState("");
 
-  return (
-    <div
-      style={{
-        display: 'flex',
-        flex: 1,
-        padding: 100,
-        flexDirection: 'column',
-      }}
-    >
-      <h1>Employee Details</h1>
+  const openedRequests=[
+      {
+          title:'Test',
+          date:new Date().toLocaleString(),
+          actions:['view']
+      },
+      {
+          title:'Test',
+          date: new Date().toLocaleString(),
+          actions:['view']
+      }
+  ]
+  const savedRequests=[
+      {
+          title:'Test',
+          date: new Date().toLocaleString(),
+          actions:['view','delete']
+      },
+      {
+          title:'Test',
+          date: new Date().toLocaleString(),
+          actions:['view','delete']
+  
+      },
+      {
+          title:'Test',
+          date: new Date().toLocaleString(),
+          actions:['view','delete']
+  
+      }
+  ]
+  const closedRequests=[
+      {
+          title:'Test',
+          date: new Date().toLocaleString(),
+          actions:['view']
+      },
+      {
+          title:'Test',
+          date: new Date().toLocaleString(),
+          actions:['view']
+      },
+      {
+          title:'Test',
+          date: new Date().toLocaleString(),
+          actions:['view']
+      },
+      {
+          title:'Test',
+          date: new Date().toLocaleString(),
+          actions:['view']
+      }
+  ]
+  const requests=[{'saved':savedRequests},{'closed':closedRequests},{'open':openedRequests}]
+  const [allRequests,setAllRequests]=useState(requests)
+  const deleteRequest=(requestIndex,requestsType)=>{
+    switch(requestsType)
+    {
+        case 'open':
+            openedRequests.splice(requestIndex,1);
+            case 'closed':
+                closedRequests.splice(requestIndex,1);
+                case 'saved':
+                    savedRequests.splice(requestIndex,1);
 
-      <MaterialUIPickers
+    }
+}
+const steps = [
+  {
+      step: 1,
+      label:'Request Details',
+      completed: false,
+      valid:false,
+      icon:<DetailsSharp/>,
+      content: <>
+
+<MaterialUIPickers
         label="Actual Date:"
         selected={actualdate}
         onSelect={date => setactualdate(date)}
@@ -28,18 +104,75 @@ function Payslip() {
         required
         style={{}}
       />
+      {/* <div style={{ justifyContent: 'center', display: 'flex' }}>
+      <Button
+        onClick={() => setShowResults(true)}
+        variant="contained"
+        color="secondary"
+        style={{ margin: 20, alignItems: 'center' }}
+      >
+        View
+      </Button>
+    </div> */}
+    </>  
+  },
+  {
+    step: 2,
+    label:"Additional Details",
+    completed: false,
+    icon:<CreateSharp/>,
+    valid: false,
+    content: <> 
+     <EmptyTextarea
+        label='Remarks:'
+        name="remarks"
+        value={remarks}
+        onChange={e => setremarks(e.target.value)}
+    />
+ 
+      
+    </>
+}
+]
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flex: 1,
+        padding: 100,
+        flexDirection: 'column',
+        backgroundColor:'#fff'
+      }}
+    >
+       <Summary onPress={(index)=>
+           {setCurrentIndex(index)
+           setShowRequestsModal(true)}
+        }/>
+        <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
+            <Button
+                onClick={() => setShow(true)}
+                variant="contained"
+                color='primary' >
+                <Add />
+                Submit New</Button>
+            </div>
 
-      <div style={{ justifyContent: 'center', display: 'flex' }}>
-        <Button
-          onClick={() => setShow(true)}
-          variant="contained"
-          color="secondary"
-          style={{ margin: 20, alignItems: 'center' }}
-        >
-          View
-        </Button>
-      </div>
-      {show ? (
+            {
+               show ? ( <form  style={{
+                display: 'flex',
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+            }}>
+                <PageHeader />
+                <CustomizedSteppers steps={steps} />
+            </form>):null
+           }
+           <SimpleModal open={showRequestsModal}  requests={requests[currentIndex]} path={'/paysliprequest'} deleteRequest={deleteRequest}/>
+
+    
+     
+      {/* {showResults ? (
         <>
           <div
             style={{
@@ -111,7 +244,7 @@ function Payslip() {
             </OutlinedCard>
           </div>
         </>
-      ) : null}
+      ) : null} */}
     </div>
   );
 }
