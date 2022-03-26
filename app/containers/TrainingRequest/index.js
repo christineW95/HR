@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Stepper } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MaterialUIPickers from '../../components/Datepicker';
@@ -12,6 +12,8 @@ import TextInput from '../../components/TextInput';
 import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
+import { sortedLastIndex } from 'lodash';
+import SimpleModal from '../../components/Modal/requestsModal';
 function TrainingRequest() {
 
     const [courseName, setcourseName] = React.useState('');
@@ -26,6 +28,8 @@ function TrainingRequest() {
     const [trainingProvider, settrainingProvider] = React.useState('');
     const [remarks, setremarks] = React.useState('');
     const [show, setShow] = useState(false)
+    const [showRequestsModal, setShowRequestsModal] = useState(false)
+    const [currentIndex, setCurrentIndex] = useState(null)
 
 const openedRequests=[
     {
@@ -80,7 +84,8 @@ const closedRequests=[
         actions:['view']
     }
 ]
-   
+   const requests=[{'saved':savedRequests},{'closed':closedRequests},{'open':openedRequests}]
+   const [allRequests,setAllRequests]=useState(requests)
     const handleSubmit = event => {
         //TODO:handle submit call API
         event.preventDefault();
@@ -209,21 +214,20 @@ const closedRequests=[
             </>
         }
     ]
-    const deleteRequest=(requestIndex,requestsType)=>{
-        switch(requestsType)
-        {
-            case 'open':
-                openedRequests.splice(requestIndex,1);
-                case 'closed':
-                    closedRequests.splice(requestIndex,1);
-                    case 'saved':
-                        savedRequests.splice(requestIndex,1);
+    const deleteRequest=(requestIndex,requestType)=>{
+        console.log({requestIndex,requestType,allRequests})
+                        let editedRequests= allRequests[0][requestType].splice(requestIndex,1);
+                        //TODO:call api
+                        setAllRequests([editedRequests,closedRequests,openedRequests])
+        console.log({'after':allRequests})
 
-        }
     }
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
-           <Summary opened={openedRequests} closed={closedRequests} saved={savedRequests} deleteRequest={deleteRequest}/>
+           <Summary onPress={(index)=>
+           {setCurrentIndex(index)
+           setShowRequestsModal(true)}
+        }/>
 
             <div style={{alignItems:'center',display:'flex',justifyContent:'center'}}>
             <Button
@@ -246,6 +250,7 @@ const closedRequests=[
             </form>):null
            }
            
+           <SimpleModal open={showRequestsModal}  requests={requests[currentIndex]} path={'/request'} deleteRequest={deleteRequest}/>
            
         </div>
     );

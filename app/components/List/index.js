@@ -18,19 +18,18 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 export default function CustomList(props) {
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
   const actionIcons=[
     <VisibilitySharp color='secondary'/>,
     <DeleteIcon color='secondary'/>
   ]
-const {requests,deleteRequest}=props
+const {requests,deleteRequest,path}=props;
+const renderedRequests= requests[Object.keys(requests)[0]];
   return (
           <Demo>
-          <List dense={dense} style={{borderRadius:15}}>
+          <List style={{borderRadius:15}}>
               {
               
-              requests.map((item,index)=>{
+              renderedRequests.map((item,index)=>{
                 return(
 
                 <ListItem style={{borderRadius:15}}>
@@ -46,14 +45,14 @@ const {requests,deleteRequest}=props
                   <ListItemSecondaryAction>
 
                 {
-                  item.actions.map((action,index)=>
+                  item.actions.map((action)=>
                  {
                   if(action == 'view' )
-                  return <Link to={'/request'} >
+                  return <Link to={path} >
                   <IconButton > {actionIcons[0]}</IconButton>
                   </Link>
                   else
-                  return <IconButton onClick={deleteRequest}> {actionIcons[1]}</IconButton>
+                  return <IconButton onClick={()=>deleteRequest(index,Object.keys(requests)[0])}> {actionIcons[1]}</IconButton>
 
                   }
                   )

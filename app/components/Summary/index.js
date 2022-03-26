@@ -13,7 +13,7 @@ import TextInput from '../TextInput';
 import CustomizedSteppers from '../Stepper';
 import SimpleModal from '../Modal/requestsModal';
 function Summary(props) {
-  const {opened,saved,closed,deleteRequest}=props
+  const {onPress}=props
   const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
@@ -38,15 +38,8 @@ function Summary(props) {
     },
   }));
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const [currentRequests,setCurrentRequests]=useState([])
+ const requests=['Saved Requests', '  Completed Requests  ', 'Opened Requests']
   return (
     <div className={classes.root}>
       <Grid
@@ -54,10 +47,11 @@ function Summary(props) {
         spacing={3}
         style={{ alignItems: 'center', justifyContent: 'space-around' }}
       >
-        <Grid xs={12} sm={4}>
-          <Button onClick={()=>{
-            setCurrentRequests(saved)
-            handleOpen()}}>
+        {
+          requests.map((item,index)=>
+          <Grid xs={12} sm={4}>
+          <Button onClick={()=>
+            onPress(index)}>
 
           <Paper className={classes.paper}>
             <Assignment
@@ -65,7 +59,6 @@ function Summary(props) {
               style={{ fontSize: 60, marginBlock: 20 }}
             />
             <h3
-              to="page.path"
               style={{
                 whiteSpace: 'nowrap',
                 textAlign: 'justify',
@@ -76,16 +69,19 @@ function Summary(props) {
                 textDecoration: 'none',
               }}
             >
-                Saved Requests
+                {item}
             </h3>
           </Paper>
           </Button>
 
         </Grid>
-        <Grid xs={12} sm={4}>
+          )
+        }
+     
+        {/* <Grid xs={12} sm={4}>
         <Button onClick={()=>{
             setCurrentRequests(closed)
-            handleOpen()}}>
+            onPress}}>
           <Paper className={classes.paper}>
             <AssignmentTurnedInIcon
               color="secondary"
@@ -113,7 +109,7 @@ function Summary(props) {
         <Grid xs={12} sm={4}>
         <Button onClick={()=>{
             setCurrentRequests(opened)
-            handleOpen()}}>
+            onPress}}>
           <Paper className={classes.paper}>
             <AssignmentLateSharp
               color="secondary"
@@ -135,9 +131,8 @@ function Summary(props) {
             </h3>
           </Paper>
           </Button>
-        </Grid>
+        </Grid> */}
       </Grid>
-      <SimpleModal open={open} handleClose={handleClose} requests={currentRequests} deleteRequest={deleteRequest}/>         
 
     </div>
   );

@@ -12,7 +12,7 @@ import TextInput from '../../components/TextInput';
 import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
-function TrainingRequest() {
+function LeaveEnchashmentRequest() {
 
     const [courseName, setcourseName] = React.useState('');
     const [courseLocation, setcourseLocation] = React.useState('');
@@ -29,50 +29,40 @@ function TrainingRequest() {
 
 
    
-    
     const steps = [
         {
             step: 1,
-            label:'Training Details',
+            label:'Balance',
             completed: false,
             valid:false,
             icon:<DetailsSharp/>,
             content: <>
-              <label style={{ padding: 7 }}>
-                    Request Date:
-                    <label style={{ padding: 50 }}>
-                        {requestDate}
+              <label style={{ padding: 7,marginBlock:10, }}>
+            Request Date: {requestDate}
+           
+        </label>
+        <TextInput
+            label="Leave Balance"
+            style={{ display: 'flex', width: 300, margin: 30 }}
+            value={leaveBalance}
+             />
+            <TextInput
+            label="Leave Encashed"
+            style={{ display: 'flex', width: 300, margin: 10 }}
+            value={leaveEncashed}
+             />
 
-                    </label>
-                </label>
-                <TextInput
-                    label="Course Name"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="coursename"
-                    value={courseName}
-                     />
 
-                <TextInput
-                    label="Course Location"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="courseLocation"
-                    value={courseLocation}
-                     />
 
-                <TextInput
-                    label="Class Name"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="className"
-                    value={className}
-                      />
+        <MultipleSelect
+            label="Type of Leave"
+            options={options}
+            value={typeOfLeave}
+             />
 
-              
-                <EmptyTextarea
-                    label='Course Details'
-                    name="courseDetails"
-                    value={courseDetails}
-                />
+
             </>
+            
         },
         {
             step: 2,
@@ -80,54 +70,26 @@ function TrainingRequest() {
             completed: false,
             valid: false,
             icon:<CalendarToday/>,
-            content: <><MaterialUIPickers label={"Begin Date:"} selected={beginDate} 
+            content: <>
+              <TextInput
+            label=" Number of days:"
+            style={{ display: 'flex', width: 300, margin: 10 }}
+            name="numofdays"
+            type={'number'}
+            value={numberOfDays}
              />
-                <MaterialUIPickers label={"End Date:"} selected={endDate}   />
-
-
-                <label style={{ padding: 7 }}>
-                    Duration:
-                    <label style={{ padding: 80 }}>
-                        {duration}
-                    </label>
-                </label>
             </>
 
         },
+       
         {
             step: 3,
-            label:"Cost",
-            icon:<MonetizationOnSharp/>,
-            completed: false,
-            valid: false,
-            content: <>  <TextInput
-                label="Cost"
-                style={{
-                    display: 'flex', width: 300, margin: 10,
-                    backgroundColor: 'white',
-                }}
-                name="cost"
-                type={'number'}
-                value={cost}
-                  />
-
-
-                <TextInput
-                    label="Training Provider:"
-                    style={{ display: 'flex', width: 300, margin: 10 }}
-                    name="trainingProvider"
-                    value={trainingProvider}
-                      />
-
-            </>
-        },
-        {
-            step: 4,
             label:"Additional Details",
             completed: false,
             icon:<CreateSharp/>,
             valid: false,
-            content: <> <EmptyTextarea
+            content: <> 
+            <EmptyTextarea
                 label='Remarks:'
                 name="remarks"
                 value={remarks}
@@ -158,7 +120,6 @@ function TrainingRequest() {
                 flexDirection: 'column',
                 justifyContent: 'space-between',
             }}>
-                <PageHeader />
                 <CustomizedSteppers steps={steps} viewOnly={true}/>
             </form>
            
@@ -167,4 +128,4 @@ function TrainingRequest() {
     );
 }
 
-export default TrainingRequest;
+export default LeaveEnchashmentRequest;

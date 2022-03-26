@@ -135,18 +135,7 @@ function Request() {
             </>
         }
     ]
-    const deleteRequest=(requestIndex,requestsType)=>{
-        switch(requestsType)
-        {
-            case 'open':
-                openedRequests.splice(requestIndex,1);
-                case 'closed':
-                    closedRequests.splice(requestIndex,1);
-                    case 'saved':
-                        savedRequests.splice(requestIndex,1);
-
-        }
-    }
+   
     return (
         <div style={{ display: 'flex', flex: 1, padding: 100, flexDirection: 'column',backgroundColor:'#fff' }}>
 

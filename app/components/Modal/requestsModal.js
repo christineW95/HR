@@ -1,34 +1,20 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import Requests from '../../containers/TrainingRequest/requests';
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+import Requests from '../../containers/GeneralRequest';
 
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
+
+
 
 export default function SimpleModal(props) {
   // getModalStyle is not a pure function, we roll the style only on the first render
-  const { open,handleClose,requests,deleteRequest}=props;
-
+  const { open,handleClose,requests,deleteRequest,path}=props;
 
   const body = (
     <div style={{borderRadius:1}} >
      
-      <Requests requests={requests} deleteRequest={deleteRequest}/>
-      <SimpleModal />
+      <Requests requests={requests} deleteRequest={deleteRequest} path={path}/>
+      <SimpleModal path={path} />
     </div>
   );
 
