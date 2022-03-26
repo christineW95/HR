@@ -2,16 +2,11 @@ import { Button, Grid, Paper, Stepper } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MaterialUIPickers from '../../components/Datepicker';
-import Footer from '../../components/Footer';
-import FullWidthGrid from '../../components/Grid';
 import PageHeader from '../../components/PageHeader';
 import EmptyTextarea from '../../components/TextArea';
-import { makeStyles } from '@material-ui/core/styles';
-import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import TextInput from '../../components/TextInput';
 import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
-import Summary from '../../components/Summary';
 export default function DutyResumptionRequest() {
     const [actualdate, setactualdate] = useState(null);
     const [unplanneddays, setunplanneddays] = useState(null);

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import Footer from "../../components/Footer";
 import MaterialUIPickers from "../../components/Datepicker";
 import EmptyTextarea from "../../components/TextArea";
 import TextInput from "../../components/TextInput";
-import CustomList from "../../components/List";
-import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
+import { Add, CreateSharp, DetailsSharp,  } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 import { Button } from "@material-ui/core";
