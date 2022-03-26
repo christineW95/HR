@@ -32,7 +32,6 @@ import LeaveEnchashmentRequest from '../LeaveEncashment/request';
 import DutyResumptionRequest from '../DutyResumption/request';
 import EmployeeServicesRequest from '../EmployeeServices/request';
 import ViewLeaveRequest from '../LeaveRequest/request';
-import PayslipRequest from '../Payslip/request';
 
 
 const AppWrapper = styled.div`
@@ -63,7 +62,6 @@ export default function App() {
         <Route path="/dutyresumptionrequest" component={DutyResumptionRequest} />
         <Route path="/employeeservicesrequest" component={EmployeeServicesRequest} />
         <Route path="/viewleaverequest" component={ViewLeaveRequest} />
-        <Route path="/paysliprequest" component={PayslipRequest} />
        
         <Route path="" component={NotFoundPage} />
       </Switch>
