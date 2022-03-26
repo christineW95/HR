@@ -16,6 +16,7 @@ function Payslip() {
     <div
       style={{
         display: 'flex',
+        backgroundColor:'#fff',
         flex: 1,
         padding: 100,
         flexDirection: 'column',
@@ -44,6 +45,8 @@ function Payslip() {
       </div>
       {show ? (
         <>
+          <SimpleTabs/>
+
           <div
             style={{
               display: 'flex',
@@ -52,6 +55,7 @@ function Payslip() {
               justifyContent: 'space-evenly',
             }}
           >
+
             <OutlinedCard>
               <Typography
                 sx={{ fontSize: 14 }}
@@ -89,6 +93,7 @@ function Payslip() {
               </Typography>
             </OutlinedCard>
           </div>
+
           <div style={{ marginBlock: 50 }}>
             <OutlinedCard>
               <Typography
@@ -115,7 +120,8 @@ function Payslip() {
           </div>
         </>
       ) : null}
-      <SimpleTabs/>
+
+     
     </div>
   );
 }
