@@ -84,7 +84,7 @@ export function HomePage({
         content="A React.js Boilerplate application homepage"
       />
       <Button onClick={()=>{
-        RetrieveSPData()
+        RetrieveSPData( window.location.host)
       }}>Call API</Button>
     
       <SpacingGrid pages={pages}>
@@ -95,7 +95,8 @@ export function HomePage({
 {page.icon}
 
 <Button
-                  key={page.name}
+                  key={page.name}J
+                  onClick={()=>console.log({x:page.path})}
                 
                 >
                   <Link to={page.path} style={{
