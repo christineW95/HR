@@ -7,7 +7,7 @@
 
 // Needed for redux-saga es6 generator support
 import '@babel/polyfill';
-
+import {BrowserRouter} from 'react-router-dom'
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -51,7 +51,9 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
+          <BrowserRouter >
           <App />
+          </BrowserRouter>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

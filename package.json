@@ -2,7 +2,7 @@
   "name": "react-boilerplate",
   "version": "4.0.0",
   "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
-  "homepage": "/sites/Style Library/UI/HR" ,
+  "homepage": "/HR",
   "repository": {
     "type": "git",
     "url": "git://github.com/react-boilerplate/react-boilerplate.git"
@@ -32,16 +32,13 @@
     "clean": "shjs ./internals/scripts/clean.js",
     "clean:all": "npm run analyze:clean && npm run test:clean && npm run build:clean",
     "generate": "plop --plopfile internals/generators/index.js"
-    
   },
   "browserslist": [
     "last 2 versions",
     "> 1%",
     "IE 10"
   ],
-  "lint-staged": {
-  
-  },
+  "lint-staged": {},
   "pre-commit": "lint:staged",
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
@@ -53,6 +50,10 @@
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/pickers": "^3.3.10",
+    "@pnp/common": "^2.13.0",
+    "@pnp/logging": "^3.1.0",
+    "@pnp/odata": "^2.13.0",
+    "@pnp/sp": "^3.1.0",
     "chalk": "2.4.2",
     "compression": "1.7.4",
     "connected-react-router": "6.4.0",

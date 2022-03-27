@@ -8,7 +8,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -29,7 +29,9 @@ import LeaveEnchashmentRequest from '../LeaveEncashment/request';
 import DutyResumptionRequest from '../DutyResumption/request';
 import EmployeeServicesRequest from '../EmployeeServices/request';
 import ViewLeaveRequest from '../LeaveRequest/request';
-
+import {  
+  Web  
+} from '@pnp/sp';  
 
 const AppWrapper = styled.div`
   margin: 0 auto;
@@ -44,23 +46,27 @@ export default function App() {
 
       <Header />
       <Switch>
-        <Route exact path="/HR"  component={HomePage} basename='/HR' />
-        <Route path="/HR/profile" component={ProfilePage} />
-        <Route path="/HR/leaverequest" component={LeaveRequest} />
-        <Route path="/HR/trainingrequest" component={TrainingRequest} />
-        <Route path="/HR/leaveencashment" component={LeaveEncashment} />
-        <Route path="/HR/employeeservices" component={EmployeeServices} />
-        <Route path="/HR/payslip" component={Payslip} />
-        <Route path="/HR/leavebalance" component={LeaveBalance} />
-        <Route path="/HR/dutyresumption" component={DutyResumption} />
-        <Route path="/HR/cancelleaverequest" component={CancelLeaveRequest} />
-        <Route path="/HR/request" component={Request} />
-        <Route path="/HR/leaveencashmentrequest" component={LeaveEnchashmentRequest} />
-        <Route path="/HR/dutyresumptionrequest" component={DutyResumptionRequest} />
-        <Route path="/HR/employeeservicesrequest" component={EmployeeServicesRequest} />
-        <Route path="/HR/viewleaverequest" component={ViewLeaveRequest} />
        
-        <Route path="" component={NotFoundPage} />
+        <Route exact path="/"  render={()=>
+          <Redirect to="/HR" />
+    }/>
+
+        <Route exact path=""  component={HomePage} />
+        <Route path="/profile" component={ProfilePage} />
+        <Route path="/leaverequest" component={LeaveRequest} />
+        <Route path="/trainingrequest" component={TrainingRequest} />
+        <Route path="/leaveencashment" component={LeaveEncashment} />
+        <Route path="/employeeservices" component={EmployeeServices} />
+        <Route path="/payslip" component={Payslip} />
+        <Route path="/leavebalance" component={LeaveBalance} />
+        <Route path="/dutyresumption" component={DutyResumption} />
+        <Route path="/cancelleaverequest" component={CancelLeaveRequest} />
+        <Route path="/request" component={Request} />
+        <Route path="/leaveencashmentrequest" component={LeaveEnchashmentRequest} />
+        <Route path="/dutyresumptionrequest" component={DutyResumptionRequest} />
+        <Route path="/employeeservicesrequest" component={EmployeeServicesRequest} />
+        <Route path="/viewleaverequest" component={ViewLeaveRequest} />
+       
       </Switch>
       <GlobalStyle />
     </AppWrapper>
