@@ -1,0 +1,7 @@
+{
+  "siteUrl": "http://192.168.111.65",
+  "strategy": "OnpremiseUserCredentials",
+  "username": "tempuser",
+  "password": "0be32bfbf976da1c68b9d0720dab1f613c8a3ebf9003d3811a7b38c96660e6d979bd2573547c77f8b4e3996ff6f05560dO31fpPpplWhRDapkDl9+A==",
+  "domain": "sharepoint2019"
+}
