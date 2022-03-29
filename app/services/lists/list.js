@@ -21,6 +21,72 @@ export default function RetrieveSPData(host){
     };    
     spRequest.send();    
 } 
+export default function TrainingData(host,listname){    
+console.log({listname})
+    var spRequest = new XMLHttpRequest();  
+    debugger;  
+    spRequest.open('GET',  `http://${host}/_api/web/lists/GetByTitle('${listname}')`,true);    
+    spRequest.setRequestHeader("Accept","application/json"); 
+    spRequest.setRequestHeader("Access-Control-Allow-Origin","*"); 
+                        console.log({spRequest})
+    spRequest.onreadystatechange = function(){    
+          
+        if (spRequest.readyState === 4 && spRequest.status === 200){  
+            var result = JSON.parse(spRequest.responseText);    
+          console.log({result})    
+        }    
+        else if (spRequest.readyState === 4 && spRequest.status !== 200){    
+            console.log('Error Occured !');    
+            console.log({spRequest});    
+            alert('Error')
+        }    
+    };    
+    spRequest.send();    
+} 
+export default function fetchListItems(host,listname)
+{
+    var spRequest = new XMLHttpRequest();  
+    debugger;  
+    spRequest.open('GET',  `http://${host}/_api/web/lists/GetByTitle('${listname}')/items`,true);    
+    spRequest.setRequestHeader("Accept","application/json"); 
+    spRequest.setRequestHeader("Access-Control-Allow-Origin","*"); 
+                        console.log({spRequest})
+    spRequest.onreadystatechange = function(){    
+          
+        if (spRequest.readyState === 4 && spRequest.status === 200){  
+            var result = JSON.parse(spRequest.responseText);    
+          console.log({result})    
+        }    
+        else if (spRequest.readyState === 4 && spRequest.status !== 200){    
+            console.log('Error Occured !');    
+            console.log({spRequest});    
+            alert('Error')
+        }    
+    };    
+    spRequest.send();  
+}
+export default function fetcItemById(host,listname,id)
+{
+    var spRequest = new XMLHttpRequest();  
+    debugger;  
+    spRequest.open('GET',  `http://${host}/_api/web/lists/GetByTitle('${listname}')/items(${id})`,true);    
+    spRequest.setRequestHeader("Accept","application/json"); 
+    spRequest.setRequestHeader("Access-Control-Allow-Origin","*"); 
+                        console.log({spRequest})
+    spRequest.onreadystatechange = function(){    
+          
+        if (spRequest.readyState === 4 && spRequest.status === 200){  
+            var result = JSON.parse(spRequest.responseText);    
+          console.log({result})    
+        }    
+        else if (spRequest.readyState === 4 && spRequest.status !== 200){    
+            console.log('Error Occured !');    
+            console.log({spRequest});    
+            alert('Error')
+        }    
+    };    
+    spRequest.send();  
+}
 //    {spRequest: XMLHttpRequest}
 // spRequest: XMLHttpRequest
 // onabort: null

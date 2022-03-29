@@ -85,6 +85,10 @@ export function HomePage({
       />
       <Button onClick={()=>{
         RetrieveSPData( window.location.host)
+        TrainingData(window.location.host,'Training')
+        fetchListItems(window.location.host,'Training')
+        fetcItemById(window.location.host,'Training',1)
+
       }}>Call API</Button>
     
       <SpacingGrid pages={pages}>
