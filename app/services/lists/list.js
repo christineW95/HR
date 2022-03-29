@@ -10,8 +10,8 @@ export default function RetrieveSPData(host){
     spRequest.onreadystatechange = function(){    
           
         if (spRequest.readyState === 4 && spRequest.status === 200){  
-            var result = JSON.parse(spRequest.responseText);    
-          console.log({result})    
+            // var result = JSON.parse(spRequest.responseText);    
+          console.log({data:spRequest.data})    
         }    
         else if (spRequest.readyState === 4 && spRequest.status !== 200){    
             console.log('Error Occured !');    
