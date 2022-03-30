@@ -8,6 +8,7 @@ import Summary from '../../components/Summary';
 import { Button } from "@material-ui/core";
 import PageHeader from "../../components/PageHeader";
 import SimpleModal from '../../components/Modal/requestsModal';
+import { DutyResumptionObj } from "../../models/dutyResumption";
 
 export default function DutyResumption() {
   const [actualdate, setactualdate] = useState(null);

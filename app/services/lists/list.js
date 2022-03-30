@@ -21,8 +21,7 @@ export default function RetrieveSPData(host){
     };    
     spRequest.send();    
 } 
-export default function TrainingData(host,listname){    
-console.log({listname})
+export   function TrainingData(host,listname){    
     var spRequest = new XMLHttpRequest();  
     debugger;  
     spRequest.open('GET',  `http://${host}/_api/web/lists/GetByTitle('EmployeeServices')`,true);    
@@ -43,7 +42,7 @@ console.log({listname})
     };    
     spRequest.send();    
 } 
-export default function fetchListItems(host,listname)
+export   function fetchListItems(host,listname)
 {
     var spRequest = new XMLHttpRequest();  
     debugger;  
@@ -65,7 +64,7 @@ export default function fetchListItems(host,listname)
     };    
     spRequest.send();  
 }
-export default function fetcItemById(host,listname,id)
+export   function fetcItemById(host,listname,id)
 {
     var spRequest = new XMLHttpRequest();  
     debugger;  
