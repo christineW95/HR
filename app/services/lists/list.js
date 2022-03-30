@@ -1,47 +1,5 @@
-import {window} from  'react-router-dom'
-export default function RetrieveSPData(host){    
 
-    var spRequest = new XMLHttpRequest();  
-    debugger;  
-    spRequest.open('GET',  `http://${host}/_api/web/SiteUsers`,true);    
-    spRequest.setRequestHeader("Accept","application/json"); 
-    spRequest.setRequestHeader("Access-Control-Allow-Origin","*"); 
-                        console.log({spRequest})
-    spRequest.onreadystatechange = function(){    
-          
-        if (spRequest.readyState === 4 && spRequest.status === 200){  
-            // var result = JSON.parse(spRequest.responseText);    
-          console.log({data:spRequest.data})    
-        }    
-        else if (spRequest.readyState === 4 && spRequest.status !== 200){    
-            console.log('Error Occured !');    
-            console.log({spRequest});    
-            alert('Error')
-        }    
-    };    
-    spRequest.send();    
-} 
-export   function TrainingData(host,listname){    
-    var spRequest = new XMLHttpRequest();  
-    debugger;  
-    spRequest.open('GET',  `http://${host}/_api/web/lists/GetByTitle('EmployeeServices')`,true);    
-    spRequest.setRequestHeader("Accept","application/json"); 
-    spRequest.setRequestHeader("Access-Control-Allow-Origin","*"); 
-                        console.log({spRequest})
-    spRequest.onreadystatechange = function(){    
-          
-        if (spRequest.readyState === 4 && spRequest.status === 200){  
-            var result = JSONnp.parse(spRequest.responseText);    
-          console.log({result})    
-        }    
-        else if (spRequest.readyState === 4 && spRequest.status !== 200){    
-            console.log('Error Occured !');    
-            console.log({spRequest});    
-            alert('Error')
-        }    
-    };    
-    spRequest.send();    
-} 
+
 export   function fetchListItems(host,listname)
 {
     var spRequest = new XMLHttpRequest();  

@@ -14,6 +14,8 @@ import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 import { sortedLastIndex } from 'lodash';
 import SimpleModal from '../../components/Modal/requestsModal';
+import { TrainingData } from '../../services/lists/list';
+import { TrainingRequestObj } from '../../models/trainingRequest';
 function TrainingRequest() {
 
     const [courseName, setcourseName] = React.useState('');
@@ -30,7 +32,34 @@ function TrainingRequest() {
     const [show, setShow] = useState(false)
     const [showRequestsModal, setShowRequestsModal] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(null)
-
+    const [data,setData]=useState([])
+useEffect(()=>{
+        var spRequest = new XMLHttpRequest();  
+        spRequest.open('GET',  `http://${window.location.host}/_api/web/lists/GetByTitle('Training)`,true);    
+        spRequest.setRequestHeader("Accept","application/json"); 
+        spRequest.setRequestHeader("Access-Control-Allow-Origin","*"); 
+        console.log({spRequest})
+        spRequest.onreadystatechange = async function(){    
+            if (spRequest.readyState === 4 && spRequest.status === 200){ 
+                console.log({response:await spRequest.data})
+              
+                const data= await spRequest.data
+                console.log({data})
+                let newData=data.map((item,index)=>{
+                    console.log({item})
+                    return new TrainingRequestObj({title:item.title})
+                })
+                console.log({newData})
+                setData(newData)
+            }    
+            else if (spRequest.readyState === 4 && spRequest.status !== 200){    
+                console.log('Error Occured !');    
+                console.log({spRequest});    
+                alert('Error')
+            }    
+        };    
+        spRequest.send();    
+},[])
 const openedRequests=[
     {
         title:'Test',
