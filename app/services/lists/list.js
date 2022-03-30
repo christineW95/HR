@@ -25,14 +25,14 @@ export default function TrainingData(host,listname){
 console.log({listname})
     var spRequest = new XMLHttpRequest();  
     debugger;  
-    spRequest.open('GET',  `http://${host}/_api/web/lists/GetByTitle('${listname}')`,true);    
+    spRequest.open('GET',  `http://${host}/_api/web/lists/GetByTitle('EmployeeServices')`,true);    
     spRequest.setRequestHeader("Accept","application/json"); 
     spRequest.setRequestHeader("Access-Control-Allow-Origin","*"); 
                         console.log({spRequest})
     spRequest.onreadystatechange = function(){    
           
         if (spRequest.readyState === 4 && spRequest.status === 200){  
-            var result = JSON.parse(spRequest.responseText);    
+            var result = JSONnp.parse(spRequest.responseText);    
           console.log({result})    
         }    
         else if (spRequest.readyState === 4 && spRequest.status !== 200){    
