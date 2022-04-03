@@ -93,3 +93,41 @@ export   function fetcItemById(host,listname,id)
 // [[Prototype]]: Array(0)
 // [[Prototype]]: Object
 // [[Prototype]]: Object
+
+
+
+// post
+
+// $.ajax
+// ({
+//     // _spPageContextInfo.webAbsoluteUrl - will give absolute URL of the site where you are running the code.
+//     // You can replace this with other site URL where you want to apply the function
+//     url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getByTitle('EmployeeServices')/items",
+//     type: "POST",
+//     headers:
+// {
+//     // Accept header: Specifies the format for response data from the server.
+//     "Accept": "application/json;odata=verbose",
+//     //Content-Type header: Specifies the format of the data that the client is sending to the server
+//     "Content-Type": "application/json;odata=verbose",
+//     // X-RequestDigest header: When you send a POST request, it must include the form digest value in X-RequestDigest header
+//     "X-RequestDigest": $("#__REQUESTDIGEST").val()
+// },
+//     data: JSON.stringify
+// ({
+// __metadata:
+//     {
+//         // Format of the "type" is: SP.Data.<<ListName>>ListItem
+//         type: "SP.Data.EmployeeServicesListItem"
+//     },
+   
+//     Title: "New Title"
+// }),
+//     success: function (data, status, xhr) {
+//         console.log("Success");
+//     },
+//     error: function (xhr, status, error) {
+//         console.log("Failed");
+//     }
+// });
+// });

@@ -12,6 +12,7 @@ import TextInput from '../../components/TextInput';
 import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, MonetizationOnSharp } from '@material-ui/icons';
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
+import { useFetch } from '../../hooks.js/get';
 function Request() {
 
     const [courseName, setcourseName] = React.useState('');
@@ -26,7 +27,9 @@ function Request() {
     const [trainingProvider, settrainingProvider] = React.useState('');
     const [remarks, setremarks] = React.useState('');
     const [show, setShow] = useState(false)
-
+    const {data,error}=useFetch('Training')
+console.log({data})
+   
 
    
     

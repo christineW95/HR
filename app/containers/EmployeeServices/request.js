@@ -14,6 +14,7 @@ import { Add, AssignmentLateSharp, CalendarToday, CreateSharp, DetailsSharp, Mon
 import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 import PageHeader from '../../components/PageHeader';
+import { useFetch } from '../../hooks.js/get';
 
 export default function EmployeeServicesRequest() {
 
@@ -23,7 +24,8 @@ export default function EmployeeServicesRequest() {
     const [purpose, setpurpose] = React.useState('');
     const [to, setTo] = React.useState(null);
     const [remarks, setremarks] = React.useState('');
-
+    const {data,error}=useFetch('EmployeeServices')
+    console.log({data})
 
    
     

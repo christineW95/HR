@@ -11,6 +11,7 @@ import CustomizedSteppers from '../../components/Stepper';
 import Summary from '../../components/Summary';
 import PageHeader from '../../components/PageHeader';
 import SimpleModal from '../../components/Modal/requestsModal';
+import { usePost } from '../../hooks.js/post';
 
 function EmployeeServices() {
     const [type, setType] = useState('')
@@ -22,7 +23,8 @@ function EmployeeServices() {
     const [show, setShow] = useState(false)
     const [showRequestsModal, setShowRequestsModal] = useState(false)
     const [currentIndex, setCurrentIndex] = useState(null)
-
+    const {data,error}=usePost('EmployeeServices')
+    console.log({data})
     const openedRequests=[
         {
             title:'Test',
